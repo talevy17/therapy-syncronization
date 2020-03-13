@@ -48,14 +48,3 @@ class dyad:
         plt.title('Positive and negative matching over sessions')
         plt.savefig(str(self.dyad_num))
         plt.show()
-
-# TODO - well, maybe in the future
-
-# class session:
-#     def __init__(self, dyad_number, session_number, data_col, data):
-#         self.dyad_num = dyad_number
-#         self.col = data_col
-#         self.df = data
-#         self.transcription = session_number
-#         self.num_of_words = data['num_of_words']
-#         self.lsm = []
