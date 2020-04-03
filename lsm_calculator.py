@@ -2,7 +2,7 @@ SPEAKER = 'event_speaker'
 NUM_OF_WORDS = 'num_of_words'
 
 
-class lsm:
+class LSM:
     def __init__(self, params, speakers):
         self.params = params
         self.speakers = speakers
