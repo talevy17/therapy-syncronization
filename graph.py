@@ -54,6 +54,7 @@ def calc_all_dyad_graph(coor_all_dyad, speakers, att):
                ['target: therapist', 'target: client'], 't',
                'Target Coordination')
 
+
 def plot_graph(data_bars, labels, name, title):
     fig, ax = plt.subplots()
     index = np.arange(3)

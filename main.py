@@ -21,6 +21,7 @@ def get_coor(df, col):
     for d in dyad_groups:
         dyad_obj = Dyad(d, col, df.loc[df[col['dyad']] == d])
         c_val[d] = dyad_obj.get_coordination_dyad()
+        break
     return c_val
 
 
@@ -46,9 +47,5 @@ def load_data(file_name):
 
 
 
-def main():
-    load_data('files/MBM_camouflage_AllWithSBS_Emo.csv')
-
-
 if __name__ == '__main__':
-    main()
+    load_data('files/MBM_camouflage_AllWithSBS.csv')

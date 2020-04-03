@@ -43,10 +43,10 @@ class Session:
                     total_exchanges += 1
             if curr == target:
                 for tag in attributes:
-                    target_tag += row[tag]
+                    target_tag[tag] += row[tag]
             else:
                 for tag in attributes:
-                    speaker_tag += row[tag]
+                    speaker_tag[tag] += row[tag]
         for tag in attributes:
             if speaker not in self.speaker_to_target:
                 self.speaker_to_target[speaker] = {}
