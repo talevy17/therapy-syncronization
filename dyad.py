@@ -40,4 +40,3 @@ class Dyad:
         writer.writerow(['session number', 'LSM positive', 'LSM negative'])
         for i in range(len(m)):
             writer.writerow([i, m[i][0], m[i][1]])
-
