@@ -1,6 +1,7 @@
+from statistics import mean
 PERSON = 'event_speaker'
 TURN = 'dialog_turn_main_speaker'
-from statistics import mean
+
 
 class Session:
     def __init__(self, df):
@@ -11,11 +12,7 @@ class Session:
     def get_coor_by_speaker(self, speaker, target, attributes, threshold=1):
         if speaker in self.speaker_to_target and target in self.target_to_speaker:
             return self.speaker_to_target[speaker], self.target_to_speaker[target]
-        general_speaker = {tag: 0 for tag in attributes}
-        general_target = {tag: 0 for tag in attributes}
-        tagged_exchanges = {tag: 0 for tag in attributes}
-        speaker_tag = {tag: 0 for tag in attributes}
-        target_tag = {tag: 0 for tag in attributes}
+        general_speaker, general_target, tagged_exchanges, speaker_tag, target_tag = self.init_dictionaries()
         curr = target
         start = True
         total_exchanges = 0
@@ -31,22 +28,27 @@ class Session:
             curr = row[TURN]
             if prev != curr:
                 if curr == target:
-                    for tag in attributes:
-                        if speaker_tag[tag] >= threshold and target_tag[tag] >= threshold:
-                            tagged_exchanges[tag] += 1
-                        if target_tag[tag] >= threshold:
-                            general_target[tag] += 1
-                        if speaker_tag[tag] >= threshold:
-                            general_speaker[tag] += 1
-                        speaker_tag[tag] = target_tag[tag] = 0
+                    speaker_tag, target_tag, general_target, general_speaker =\
+                        self.exchange_handler(threshold, attributes, speaker_tag,
+                                              target_tag, general_target, general_speaker)
                 else:
-                    total_exchanges += 1
+                    tagged_exchanges += 1
             if curr == target:
                 for tag in attributes:
                     target_tag[tag] += row[tag]
             else:
                 for tag in attributes:
                     speaker_tag[tag] += row[tag]
+        self.get_probs_by_tags(attributes, speaker,
+                               target, total_exchanges, general_target, general_speaker, tagged_exchanges)
+        return self.speaker_to_target[speaker], self.target_to_speaker[target]
+
+    def add_avg_to_dict(self, speaker, target):
+        self.speaker_to_target[speaker]['avg'] = mean(list(self.speaker_to_target[speaker].values()))
+        self.target_to_speaker[target]['avg'] = mean(list(self.target_to_speaker[target].values()))
+
+    def get_probs_by_tags(self, attributes, speaker, target, total_exchanges,
+                          general_target, general_speaker, tagged_exchanges):
         for tag in attributes:
             if speaker not in self.speaker_to_target:
                 self.speaker_to_target[speaker] = {}
@@ -62,8 +64,24 @@ class Session:
                 self.speaker_to_target[speaker][tag] = 0
                 self.target_to_speaker[target][tag] = 0
         self.add_avg_to_dict(speaker, target)
-        return self.speaker_to_target[speaker], self.target_to_speaker[target]
 
-    def add_avg_to_dict(self, speaker, target):
-        self.speaker_to_target[speaker]['avg'] = mean(list(self.speaker_to_target[speaker].values()))
-        self.target_to_speaker[target]['avg'] = mean(list(self.target_to_speaker[target].values()))
+    @staticmethod
+    def init_dictionaries():
+        general_speaker = {tag: 0 for tag in attributes}
+        general_target = {tag: 0 for tag in attributes}
+        tagged_exchanges = {tag: 0 for tag in attributes}
+        speaker_tag = {tag: 0 for tag in attributes}
+        target_tag = {tag: 0 for tag in attributes}
+        return general_speaker, general_target, tagged_exchanges, speaker_tag, target_tag
+
+    @staticmethod
+    def exchange_handler(threshold, attributes, speaker_tag, target_tag, general_target, general_speaker):
+        for tag in attributes:
+            if speaker_tag[tag] >= threshold and target_tag[tag] >= threshold:
+                tagged_exchanges[tag] += 1
+            if target_tag[tag] >= threshold:
+                general_target[tag] += 1
+            if speaker_tag[tag] >= threshold:
+                general_speaker[tag] += 1
+            speaker_tag[tag] = target_tag[tag] = 0
+        return speaker_tag, target_tag, general_target, general_speaker
