@@ -1,5 +1,6 @@
 from session import Session
 
+
 class Dyad:
     def __init__(self, dyad_number, data_col, data):
         self.dyad_num = dyad_number

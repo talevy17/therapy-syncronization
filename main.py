@@ -46,6 +46,5 @@ def load_data(file_name):
     # calc_all_dyad_graph(t,['speaker', 'target'],3)
 
 
-
 if __name__ == '__main__':
     load_data('files/MBM_camouflage_AllWithSBS.csv')
