@@ -1,31 +1,34 @@
-from lsm_calculator import LSM
 from session import Session
-
 
 class Dyad:
     def __init__(self, dyad_number, data_col, data):
         self.dyad_num = dyad_number
         self.col = data_col
         self.df = data
+        self.attributes = ['positive_v1', 'negative_v1']
+        self.speakers = ['Client', 'Therapist']
+        self.sessions = self.split_sessions()
+
+    def split_sessions(self):
+        tr_groups = self.df[self.col['transcription']].unique()
+        # transcription_hard_key : session
+        sessions = {}
+        for tr in tr_groups:
+            s_df = self.df.loc[self.df[self.col['transcription']] == tr]
+            key = s_df['transcription_hard_key'].iloc[0]
+            sessions[key] = Session(s_df, key, self.attributes, self.speakers)
+        return sessions
 
     def get_coordination_dyad(self):
-        tr_groups = self.df[self.col['transcription']].unique()
-        c_client_as_speaker = []
-        c_client_as_target = []
-        for tr in tr_groups:
-            s = Session(self.df.loc[self.df[self.col['transcription']] == tr])
-            attributes = ['positive_v1', 'negative_v1']
-            c_client_as_speaker.append(s.get_coor_by_speaker('Client', 'Therapist', attributes, threshold=1))
-            c_client_as_target.append(s.get_coor_by_speaker('Therapist', 'Client', attributes, threshold=1))
+        c_client_as_speaker, c_client_as_target = [], []
+        for session in self.sessions.values():
+            coordination = session.get_coordination()
+            c_client_as_speaker.append(coordination[0])
+            c_client_as_target.append(coordination[1])
         return c_client_as_speaker, c_client_as_target
 
     def get_lsm_dyad(self):
-        tr_groups = self.df[self.col['transcription']].unique()
-        lsm_val = LSM(self.col['params'], self.col['speakers'])
-        match = []
-        for tr in tr_groups:
-            match.append(lsm_val.get_match(self.df.loc[self.df[self.col['transcription']] == tr]))
-        return match
+        return [session.get_LSM() for session in self.sessions.values()]
 
     def avg_lsm_score(self):
         matches = self.get_lsm_dyad()

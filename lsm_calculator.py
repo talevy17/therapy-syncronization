@@ -4,9 +4,10 @@ NUM_OF_WORDS = 'num_of_words'
 
 
 class LSM:
-    def __init__(self, params, speakers):
+    def __init__(self, params, speakers, df):
         self.params = params
         self.speakers = speakers
+        self.df = df
 
     '''
     preps1 - percent of pos/neg words for the first speaker
@@ -18,14 +19,14 @@ class LSM:
         ans = 1 - (abs(preps1 - preps2) / (preps1 + preps2 + 0.0001))
         return "{0:.2f}".format(ans)
 
-    def calc_percent_by_speaker(self, df, speaker):
-        all_words = sum(df[NUM_OF_WORDS])
-        speaker_data = df[(df[SPEAKER] == speaker) & (df[MAIN_SPEAKER] == speaker)]
+    def calc_percent_by_speaker(self, speaker):
+        all_words = sum(self.df[NUM_OF_WORDS])
+        speaker_data = self.df[(self.df[SPEAKER] == speaker) & (self.df[MAIN_SPEAKER] == speaker)]
         return [sum(speaker_data[p]) / all_words for p in self.params]
 
     # get filtered data
-    def get_match(self, df):
-        speakers_params_per = [(self.calc_percent_by_speaker(df, s)) for s in self.speakers]
+    def get_match(self):
+        speakers_params_per = [(self.calc_percent_by_speaker(s)) for s in self.speakers]
         lsm_calcs = []  # LSM pos, LSM neg
         for i in range(len(self.params)):
             lsm_calcs.append(self.calc_lsm(speakers_params_per[0][i], speakers_params_per[1][i]))
