@@ -1,4 +1,5 @@
 from statistics import mean
+
 PERSON = 'event_speaker'
 TURN = 'dialog_turn_main_speaker'
 
@@ -12,7 +13,7 @@ class Session:
     def get_coor_by_speaker(self, speaker, target, attributes, threshold=1):
         if speaker in self.speaker_to_target and target in self.target_to_speaker:
             return self.speaker_to_target[speaker], self.target_to_speaker[target]
-        general_speaker, general_target, tagged_exchanges, speaker_tag, target_tag = self.init_dictionaries()
+        general_speaker, general_target, tagged_exchanges, speaker_tag, target_tag = self.init_dictionaries(attributes)
         curr = target
         start = True
         total_exchanges = 0
@@ -28,11 +29,12 @@ class Session:
             curr = row[TURN]
             if prev != curr:
                 if curr == target:
-                    speaker_tag, target_tag, general_target, general_speaker =\
-                        self.exchange_handler(threshold, attributes, speaker_tag,
-                                              target_tag, general_target, general_speaker)
+                    speaker_tag, target_tag, general_target, general_speaker, tagged_exchanges = \
+                        self.exchange_handler(threshold, attributes, speaker_tag, target_tag, general_target,
+                                              general_speaker,
+                                              tagged_exchanges)
                 else:
-                    tagged_exchanges += 1
+                    total_exchanges += 1
             if curr == target:
                 for tag in attributes:
                     target_tag[tag] += row[tag]
@@ -58,15 +60,17 @@ class Session:
                 general_target[tag] /= total_exchanges
                 general_speaker[tag] /= total_exchanges
                 conditioned = tagged_exchanges[tag] / total_exchanges
-                self.speaker_to_target[speaker][tag] = (conditioned / (general_target[tag] + 0.001)) - general_speaker[tag]
-                self.target_to_speaker[target][tag] = (conditioned / (general_speaker[tag] + 0.001)) - general_target[tag]
+                self.speaker_to_target[speaker][tag] = (conditioned / (general_target[tag] + 0.001)) - general_speaker[
+                    tag]
+                self.target_to_speaker[target][tag] = (conditioned / (general_speaker[tag] + 0.001)) - general_target[
+                    tag]
             else:
                 self.speaker_to_target[speaker][tag] = 0
                 self.target_to_speaker[target][tag] = 0
         self.add_avg_to_dict(speaker, target)
 
     @staticmethod
-    def init_dictionaries():
+    def init_dictionaries(attributes):
         general_speaker = {tag: 0 for tag in attributes}
         general_target = {tag: 0 for tag in attributes}
         tagged_exchanges = {tag: 0 for tag in attributes}
@@ -75,7 +79,8 @@ class Session:
         return general_speaker, general_target, tagged_exchanges, speaker_tag, target_tag
 
     @staticmethod
-    def exchange_handler(threshold, attributes, speaker_tag, target_tag, general_target, general_speaker):
+    def exchange_handler(threshold, attributes, speaker_tag, target_tag, general_target, general_speaker,
+                         tagged_exchanges):
         for tag in attributes:
             if speaker_tag[tag] >= threshold and target_tag[tag] >= threshold:
                 tagged_exchanges[tag] += 1
@@ -84,4 +89,4 @@ class Session:
             if speaker_tag[tag] >= threshold:
                 general_speaker[tag] += 1
             speaker_tag[tag] = target_tag[tag] = 0
-        return speaker_tag, target_tag, general_target, general_speaker
+        return speaker_tag, target_tag, general_target, general_speaker, tagged_exchanges

@@ -41,8 +41,8 @@ def load_data(file_name):
               'params': ['positive_v1', 'negative_v1'],
               'speakers': ['Client', 'Therapist'],
               'num_of_words': 'num_of_words'}
-    # lsm_val = get_lsm(df, params)
-    t = get_coor(df, params)
+    lsm_val = get_lsm(df, params)
+    # t = get_coor(df, params)
     # calc_all_dyad_graph(t,['speaker', 'target'],3)
 
 
