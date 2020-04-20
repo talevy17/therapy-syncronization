@@ -25,14 +25,26 @@ def get_coor(df, col):
     return c_val
 
 
-def create_lsm_tables(df, col):
+def create_tables(df, col, file_name, att, lsm=False):
     dyad_groups = df[col['dyad']].unique()
-    with open('files/table.csv', 'w', newline='') as file:
+    with open(file_name, 'w', newline='') as file:
         writer = csv.writer(file)
-        writer.writerow(['dyad_number','session_key', 'LSM_positive', 'LSM_negative'])
+        writer.writerow(att)
         for d in dyad_groups:
             dyad_obj = Dyad(d, col, df.loc[df[col['dyad']] == d])
-            dyad_obj.tables(writer)
+            dyad_obj.tables(writer, lsm)
+
+
+def add_table(df, params):
+    coor_table_att = ['dyad_number', 'session_key', 'speaker', 'target'
+                      'c_speaker:target_pos', 'c_speaker:target_neg', 'c_speaker:target_avg',
+                      'c_target:speaker_pos', 'c_target:speaker_neg', 'c_target:speaker_avg']
+
+    lsm_table_att = ['dyad_number', 'session_key', 'LSM_positive', 'LSM_negative']
+    # create coor table
+    create_tables(df, params, 'files/table_coordination.csv', coor_table_att)
+    # create lsm table
+    create_tables(df, params, 'files/table_lsm.csv', lsm_table_att, lsm=True)
 
 
 def load_data(file_name):
@@ -44,7 +56,9 @@ def load_data(file_name):
               'num_of_words': 'num_of_words'}
     # lsm_val = get_lsm(df, params)
     # t = get_coor(df, params)
-    create_lsm_tables(df, params)
+
+    add_table(df, params)
+
     # calc_all_dyad_graph(t,['speaker', 'target'],3)
 
 

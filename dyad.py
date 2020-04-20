@@ -1,5 +1,6 @@
 from session import Session
 
+
 class Dyad:
     def __init__(self, dyad_number, data_col, data):
         self.dyad_num = dyad_number
@@ -37,18 +38,41 @@ class Dyad:
             avg.append((m[0] + m[1]) / 2)
         return avg
 
-    # add key
-    def tables(self, writer):
-        m = self.get_lsm_dyad()
-        sessions_keys = key_to_arr(self.sessions)
-        for i in range(len(m)):
-            writer.writerow(self.row(sessions_keys[i], m[i]))
+    def tables(self, writer, lsm):
+        self.lsm_table(writer) if lsm else self.coordination_table(writer)
 
-    def row(self, key, values):
-        ans =[self.dyad_num, key]
+    def coordination_table(self, writer):
+        coor_val = self.get_coordination_dyad()
+        sessions_keys = key_to_arr(self.sessions)
+        for speaker in range(len(coor_val)):
+            for i in range(len(coor_val[speaker])):
+                writer.writerow(self.coor_row(sessions_keys[i],
+                                              self.speakers[speaker],
+                                              coor_val[speaker][i]))
+
+    def lsm_table(self, writer):
+        lsm_val = self.get_lsm_dyad()
+        sessions_keys = key_to_arr(self.sessions)
+        for i in range(len(lsm_val)):
+            writer.writerow(self.lsm_row(sessions_keys[i], lsm_val[i]))
+
+    def lsm_row(self, key, values):
+        ans = [self.dyad_num, key]
         for v in values:
             ans.append(v)
         return ans
+
+    def coor_row(self, key, speaker, values):
+        ans = [self.dyad_num, key, speaker, self.get_target(speaker)]
+        for tuple in values:
+            for arg in tuple.values():
+                ans.append(arg)
+        return ans
+
+    def get_target(self, speaker):
+        first = self.speakers[0]
+        return first if first is not speaker else self.speakers[1]
+
 
 def key_to_arr(dict):
     return [key for key in dict]
