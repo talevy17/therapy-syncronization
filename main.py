@@ -29,6 +29,7 @@ def create_lsm_tables(df, col):
     dyad_groups = df[col['dyad']].unique()
     with open('files/table.csv', 'w', newline='') as file:
         writer = csv.writer(file)
+        writer.writerow(['dyad_number','session_key', 'LSM_positive', 'LSM_negative'])
         for d in dyad_groups:
             dyad_obj = Dyad(d, col, df.loc[df[col['dyad']] == d])
             dyad_obj.tables(writer)
@@ -41,8 +42,9 @@ def load_data(file_name):
               'params': ['positive_v1', 'negative_v1'],
               'speakers': ['Client', 'Therapist'],
               'num_of_words': 'num_of_words'}
-    lsm_val = get_lsm(df, params)
-    t = get_coor(df, params)
+    # lsm_val = get_lsm(df, params)
+    # t = get_coor(df, params)
+    create_lsm_tables(df, params)
     # calc_all_dyad_graph(t,['speaker', 'target'],3)
 
 

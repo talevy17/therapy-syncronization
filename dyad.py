@@ -1,6 +1,5 @@
 from session import Session
 
-
 class Dyad:
     def __init__(self, dyad_number, data_col, data):
         self.dyad_num = dyad_number
@@ -38,9 +37,18 @@ class Dyad:
             avg.append((m[0] + m[1]) / 2)
         return avg
 
+    # add key
     def tables(self, writer):
         m = self.get_lsm_dyad()
-        writer.writerow(['dyad number : ' + str(self.dyad_num)])
-        writer.writerow(['session number', 'LSM positive', 'LSM negative'])
+        sessions_keys = key_to_arr(self.sessions)
         for i in range(len(m)):
-            writer.writerow([i, m[i][0], m[i][1]])
+            writer.writerow(self.row(sessions_keys[i], m[i]))
+
+    def row(self, key, values):
+        ans =[self.dyad_num, key]
+        for v in values:
+            ans.append(v)
+        return ans
+
+def key_to_arr(dict):
+    return [key for key in dict]
