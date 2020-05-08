@@ -45,7 +45,7 @@ def merge_data(coor_all_dyad, speakers, att):
     return first_graph, second_graph
 
 
-def calc_all_dyad_graph(coor_all_dyad, speakers, att):
+def coor_all_dyad_graph(coor_all_dyad, speakers, att):
     first_g, sec_g = merge_data(coor_all_dyad, speakers, att)
     plot_graph([first_g['speaker'], first_g['target']],
                ['speaker: therapist', 'speaker: client'], 's',

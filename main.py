@@ -1,7 +1,8 @@
 import pandas as pd
 from dyad import Dyad
 import csv
-from graph import c_graphs, calc_all_dyad_graph
+# from graph import c_graphs, coor_all_dyad_graph
+from params import POS_TAG, get_coor_table_att
 
 
 # origin data
@@ -36,13 +37,10 @@ def create_tables(df, col, file_name, att, lsm=False):
 
 
 def add_table(df, params):
-    coor_table_att = ['dyad_number', 'session_key', 'speaker', 'target'
-                      'c_speaker:target_pos', 'c_speaker:target_neg', 'c_speaker:target_avg',
-                      'c_target:speaker_pos', 'c_target:speaker_neg', 'c_target:speaker_avg']
-
-    lsm_table_att = ['dyad_number', 'session_key', 'LSM_positive', 'LSM_negative']
+    # coor_table_att = get_coor_table_att()
+    lsm_table_att = ['dyad_number', 'session_key'] + POS_TAG + ['lsm_avg']
     # create coor table
-    create_tables(df, params, 'files/table_coordination.csv', coor_table_att)
+    # create_tables(df, params, 'files/table_coordination.csv', coor_table_att)
     # create lsm table
     create_tables(df, params, 'files/table_lsm.csv', lsm_table_att, lsm=True)
 
@@ -51,15 +49,15 @@ def load_data(file_name):
     df = pd.read_csv(file_name)
     params = {'dyad': 'dyad_n',
               'transcription': 'transcription_n',
-              'params': ['positive_v1', 'negative_v1'],
               'speakers': ['Client', 'Therapist'],
               'num_of_words': 'num_of_words'}
+
     # lsm_val = get_lsm(df, params)
     # t = get_coor(df, params)
 
     add_table(df, params)
 
-    # calc_all_dyad_graph(t,['speaker', 'target'],3)
+    # coor_all_dyad_graph(t,['speaker', 'target'],3)
 
 
 if __name__ == '__main__':

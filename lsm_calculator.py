@@ -2,7 +2,6 @@ SPEAKER = 'event_speaker'
 MAIN_SPEAKER = 'dialog_turn_main_speaker'
 NUM_OF_WORDS = 'num_of_words'
 
-
 class LSM:
     def __init__(self, params, speakers, df):
         self.params = params
@@ -27,7 +26,8 @@ class LSM:
     # get filtered data
     def get_match(self):
         speakers_params_per = [(self.calc_percent_by_speaker(s)) for s in self.speakers]
-        lsm_calcs = []  # LSM pos, LSM neg
+        lsm_calcs = []
         for i in range(len(self.params)):
+            # 0/1 for speakers..
             lsm_calcs.append(self.calc_lsm(speakers_params_per[0][i], speakers_params_per[1][i]))
         return lsm_calcs

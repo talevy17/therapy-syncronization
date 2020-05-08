@@ -1,12 +1,14 @@
 from session import Session
-
+import graph
+from params import POS_TAG
+from statistics import mean
 
 class Dyad:
     def __init__(self, dyad_number, data_col, data):
         self.dyad_num = dyad_number
         self.col = data_col
         self.df = data
-        self.attributes = ['positive_v1', 'negative_v1']
+        self.attributes = POS_TAG
         self.speakers = ['Client', 'Therapist']
         self.sessions = self.split_sessions()
 
@@ -60,6 +62,7 @@ class Dyad:
         ans = [self.dyad_num, key]
         for v in values:
             ans.append(v)
+        ans.append(mean(list(map(float, values))))
         return ans
 
     def coor_row(self, key, speaker, values):
