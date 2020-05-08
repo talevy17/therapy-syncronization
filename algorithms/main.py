@@ -1,8 +1,8 @@
 import pandas as pd
-from dyad import Dyad
+from algorithms.dyad import Dyad
 import csv
 # from graph import c_graphs, coor_all_dyad_graph
-from params import POS_TAG, get_coor_table_att
+from algorithms.params import POS_TAG, get_coor_table_att
 
 
 # origin data

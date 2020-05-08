@@ -1,5 +1,5 @@
-from coordination import Coordination
-from lsm_calculator import LSM
+from algorithms.coordination import Coordination
+from algorithms.lsm_calculator import LSM
 
 
 class Session:

@@ -1,6 +1,6 @@
-from session import Session
-import graph
-from params import POS_TAG
+from algorithms.session import Session
+from algorithms import graph
+from algorithms.params import POS_TAG
 from statistics import mean
 
 class Dyad:
