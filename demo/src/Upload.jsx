@@ -3,29 +3,39 @@ import React, { Component } from "react";
 export default class Upload extends Component {
   constructor(props) {
     super(props);
-    this.state = { upload: false };
+    this.state = { uploading: false };
   }
   handleFileUpload = (e) => {
     e.preventDefault();
-
+    this.setState({ uploading: true });
     const data = new FormData();
     data.append("file", this.uploadInput.files[0]);
-    this.setState({ upload: true });
+
     fetch("/upload", {
       method: "POST",
       body: data,
     }).then((response) => {
-      this.setState(
-        { upload: false },
-        () => (window.location.href = response.url)
-      );
+      this.setState({ uploading: false, url: response.url });
     });
   };
 
   renderFileReady = () => {
-    return this.state && this.state.upload ? (
-      <div> Proccessing Request... </div>
-    ) : null;
+    if (!this.state || (!this.state.url && !this.state.uploading)) {
+      return null;
+    }
+    if (this.state.uploding) {
+      return <div> Proccessing Data...</div>;
+    }
+    if (this.state.url) {
+      return (
+        <div>
+          <button onClick={() => (window.location.href = this.state.url)}>
+            Export to CSV
+          </button>
+          <button> Export graphs </button>
+        </div>
+      );
+    }
   };
 
   render() {

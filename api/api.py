@@ -18,7 +18,17 @@ def file_upload():
     file.save(os.path.join(UPLOAD_FOLDER, filename))
 
     # process data and send
+    return filename
+    # return redirect(url_for('download', filename=filename))
 
+
+@app.route('/lsm-table', methods=['POST'])
+def lsm_table(filename):
+    file = request.files['file']
+    filename = secure_filename(file.filename)
+    file.save(os.path.join(UPLOAD_FOLDER, filename))
+
+    # process data and send
     return redirect(url_for('download', filename=filename))
 
 
