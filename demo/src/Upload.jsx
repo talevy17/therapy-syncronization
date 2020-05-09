@@ -4,7 +4,6 @@ import {
   Button,
   CircularProgress,
   Paper,
-  Divider,
 } from "@material-ui/core";
 import { DropzoneDialog } from "material-ui-dropzone";
 import "./Upload.scss";
