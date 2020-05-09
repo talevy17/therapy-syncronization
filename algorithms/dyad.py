@@ -1,6 +1,6 @@
-from session import Session
-from graph import match_graph_one_dyad
-from params import POS_TAG
+from algorithms.session import Session
+from algorithms.graph import match_graph_one_dyad
+from algorithms.params import POS_TAG
 from statistics import mean
 
 

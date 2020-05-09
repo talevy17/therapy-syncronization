@@ -1,10 +1,10 @@
 import os
 import zipfile
 import pandas as pd
-from dyad import Dyad
+from algorithms.dyad import Dyad
 import csv
-from params import POS_TAG, get_coor_table_att, pt_labels
-from graph import coor_all_dyad_graph
+from algorithms.params import POS_TAG, get_coor_table_att, pt_labels
+from algorithms.graph import coor_all_dyad_graph
 
 TMP_PARAMS = {'dyad': 'dyad_n',
               'transcription': 'transcription_n',
@@ -79,7 +79,7 @@ def zip_graph(df, params, lsm):
 def controller(file_name, params=None, table=False, graphs=False, lsm=False):
     if not params:
         params = TMP_PARAMS
-    df = pd.read_csv('../files/' + file_name)
+    df = pd.read_csv('files/' + file_name)
     if table:
         get_table(df, params, lsm)
     if graphs:
