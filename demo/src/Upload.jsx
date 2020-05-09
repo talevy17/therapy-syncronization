@@ -33,7 +33,7 @@ export default class Upload extends Component {
   };
 
   onFileUploaded = () => {
-    if (!this.state || (!this.state.url && !this.state.uploading)) {
+    if (!this.state || (!this.state.filename && !this.state.uploading)) {
       return null;
     }
     if (this.state.uploding) {
