@@ -1,8 +1,7 @@
 from session import Session
-from graph import match_graph_one_dyad, c_graphs
+import graph
 from params import POS_TAG
 from statistics import mean
-
 
 class Dyad:
     def __init__(self, dyad_number, data_col, data):
