@@ -21,15 +21,14 @@ def plot_lsm(df, col, directory):
         dyad_obj.plot_lsm_graph(directory)
 
 
-def plot_coordination(df, col, directory, plot_graph=False):
+def plot_coordination(df, col, directory):
     dyad_groups = df[col['dyad']].unique()
     c_val = {}
     for d in dyad_groups:
         dyad_obj = Dyad(d, col, df.loc[df[col['dyad']] == d])
         c_val[d] = dyad_obj.get_coordination_dyad()
-    if plot_graph:
-        from params import POS_TAG
-        coor_all_dyad_graph(c_val, ['speaker', 'target'], POS_TAG, pt_labels, directory)
+        break
+    coor_all_dyad_graph(c_val, ['speaker', 'target'], POS_TAG, pt_labels, directory)
 
 
 def create_tables(df, col, file_name, att, lsm=False):
