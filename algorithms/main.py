@@ -45,9 +45,11 @@ def get_table(df, params, lsm):
     if lsm:
         lsm_table_att = ['dyad_number', 'session_key'] + POS_TAG + ['lsm_avg']
         create_tables(df, params, 'files/lsm_table.csv', lsm_table_att, lsm=True)
+        return 'lsm_table.csv'
     else:
         coor_table_att = get_coor_table_att()
         create_tables(df, params, 'files/coordination_table.csv', coor_table_att)
+        return 'coordination_table.csv'
 
 
 def create_zip_file(zip_file_name, zip_path):
@@ -80,9 +82,9 @@ def controller(file_name, params=None, table=False, graphs=False, lsm=False):
         params = TMP_PARAMS
     df = pd.read_csv('files/' + file_name)
     if table:
-        get_table(df, params, lsm)
+        return get_table(df, params, lsm)
     if graphs:
-        zip_graph(df, params, lsm)
+        return zip_graph(df, params, lsm)
 
 
 if __name__ == '__main__':
