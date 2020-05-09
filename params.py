@@ -24,3 +24,8 @@ def get_coor_table_att():
     s_t = ['c_speaker:target_{}'.format(pt) for pt in POS_TAG]
     t_s = ['c_target:speaker_{}'.format(pt) for pt in POS_TAG]
     return att + s_t + ['c_speaker:target_avg'] + t_s + ['c_target:speaker_avg']
+
+
+pt_labels = ['adv', 'at', 'cc', 'conj', 'cop', 'def',
+             'dt', 'dtt', 'ex', 'in', 'md', 'pos',
+             'prep', 'prp', 'qw', 'rb', 'rel', 's_prn', 'tmp']
