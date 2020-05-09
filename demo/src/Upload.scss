@@ -1,0 +1,22 @@
+.container {
+  height: 1vh;
+  width: auto;
+}
+
+.section {
+  margin: 20 20 20 20;
+  padding: 20px;
+}
+
+.progress-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100px;
+  width: 100px;
+  margin: auto;
+}
+
+.progress-loader {
+  margin: auto;
+}
