@@ -1,7 +1,8 @@
-from algorithms.session import Session
-from algorithms import graph
-from algorithms.params import POS_TAG
+from session import Session
+from graph import match_graph_one_dyad
+from params import POS_TAG
 from statistics import mean
+
 
 class Dyad:
     def __init__(self, dyad_number, data_col, data):
@@ -75,6 +76,9 @@ class Dyad:
     def get_target(self, speaker):
         first = self.speakers[0]
         return first if first is not speaker else self.speakers[1]
+
+    def plot_lsm_graph(self):
+        match_graph_one_dyad(self.get_lsm_dyad(), self.dyad_num)
 
 
 def key_to_arr(dict):

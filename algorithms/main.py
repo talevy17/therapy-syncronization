@@ -1,29 +1,33 @@
 import pandas as pd
-from algorithms.dyad import Dyad
+from dyad import Dyad
 import csv
-# from graph import c_graphs, coor_all_dyad_graph
-from algorithms.params import POS_TAG, get_coor_table_att
+from params import POS_TAG, get_coor_table_att, pt_labels
+from graph import coor_all_dyad_graph
+
+TMP_PARAMS = {'dyad': 'dyad_n',
+              'transcription': 'transcription_n',
+              'speakers': ['Client', 'Therapist'],
+              'num_of_words': 'num_of_words'}
 
 
 # origin data
-def get_lsm(df, col):
+def plot_lsm(df, col):
     # list of all of the couples
     dyad_groups = df[col['dyad']].unique()
-    lsm_val = {}
     for d in dyad_groups:
         dyad_obj = Dyad(d, col, df.loc[df[col['dyad']] == d])
-        lsm_val[d] = dyad_obj.get_lsm_dyad()
-    return lsm_val
+        dyad_obj.plot_lsm_graph()
 
 
-def get_coor(df, col):
+def plot_coordination(df, col, plot_graph=False):
     dyad_groups = df[col['dyad']].unique()
     c_val = {}
     for d in dyad_groups:
         dyad_obj = Dyad(d, col, df.loc[df[col['dyad']] == d])
         c_val[d] = dyad_obj.get_coordination_dyad()
-        break
-    return c_val
+    if plot_graph:
+        from params import POS_TAG
+        coor_all_dyad_graph(c_val, ['speaker', 'target'], POS_TAG, pt_labels)
 
 
 def create_tables(df, col, file_name, att, lsm=False):
@@ -36,29 +40,29 @@ def create_tables(df, col, file_name, att, lsm=False):
             dyad_obj.tables(writer, lsm)
 
 
-def add_table(df, params):
-    # coor_table_att = get_coor_table_att()
-    lsm_table_att = ['dyad_number', 'session_key'] + POS_TAG + ['lsm_avg']
-    # create coor table
-    # create_tables(df, params, 'files/table_coordination.csv', coor_table_att)
-    # create lsm table
-    create_tables(df, params, 'files/table_lsm.csv', lsm_table_att, lsm=True)
+def get_table(df, params, lsm):
+    if lsm:
+        lsm_table_att = ['dyad_number', 'session_key'] + POS_TAG + ['lsm_avg']
+        create_tables(df, params, 'files/lsm_table.csv', lsm_table_att, lsm=True)
+    else:
+        coor_table_att = get_coor_table_att()
+        create_tables(df, params, 'files/coordination_table.csv', coor_table_att)
 
 
-def load_data(file_name):
-    df = pd.read_csv(file_name)
-    params = {'dyad': 'dyad_n',
-              'transcription': 'transcription_n',
-              'speakers': ['Client', 'Therapist'],
-              'num_of_words': 'num_of_words'}
+def zip_graph(df, params, lsm):
+    if lsm:
+        plot_lsm(df, params)
+    else:
+        plot_coordination(df, params)
 
-    # lsm_val = get_lsm(df, params)
-    # t = get_coor(df, params)
 
-    add_table(df, params)
-
-    # coor_all_dyad_graph(t,['speaker', 'target'],3)
+def controller(file_name, params, table=False, graphs=False, lsm=False):
+    df = pd.read_csv('files/' + file_name)
+    if table:
+        get_table(df, params, lsm)
+    if graphs:
+        zip_graph(df, params, lsm)
 
 
 if __name__ == '__main__':
-    load_data('files/MBM_camouflage_AllWithSBS.csv')
+    controller('files/MBM_camouflage_AllWithSBS.csv', TMP_PARAMS)
