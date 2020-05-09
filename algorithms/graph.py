@@ -2,7 +2,6 @@ from statistics import mean
 import numpy as np
 import matplotlib.pyplot as plt
 from scipy.special import softmax
-from params import pt_labels
 
 
 def split_data_to_graph(data, speakers):
@@ -27,9 +26,6 @@ def add_avg(data, speakers, params_n):
 def c_graphs(coor_all_dyad):
     dyad_dict = {}
     for d in coor_all_dyad:
-        # graphs = split_data_to_graph(coor_all_dyad[d], ['speaker', 'target'])
-        # plot_graph([graphs[1]['speaker'], graphs[1]['target']],
-        #            ['speaker: therapist', 'speaker: client'], d, 'dyad coordination by sessions')
         dyad_dict[d] = split_data_to_graph(coor_all_dyad[d], ['speaker', 'target'])
     return dyad_dict
 
