@@ -1,15 +1,22 @@
 import React, { Component } from "react";
+import {
+  ButtonGroup,
+  Button,
+  CircularProgress,
+  Paper,
+  Divider,
+} from "@material-ui/core";
+import { DropzoneDialog } from "material-ui-dropzone";
+import "./Upload.scss";
 
 export default class Upload extends Component {
   constructor(props) {
     super(props);
-    this.state = { uploading: false };
+    this.state = { open: false, proccessing: false };
   }
-  handleFileUpload = (e) => {
-    e.preventDefault();
-    this.setState({ uploading: true });
+  handleFileUpload = (files) => {
     const data = new FormData();
-    data.append("file", this.uploadInput.files[0]);
+    data.append("file", files[0]);
 
     fetch("/upload", {
       method: "POST",
@@ -17,8 +24,9 @@ export default class Upload extends Component {
     }).then((response) => {
       response
         .text()
-        .then((filename) => this.setState({ uploading: false, filename }));
+        .then((filename) => this.setState({ proccessing: false, filename }));
     });
+    this.setState({ proccessing: true, open: false });
   };
 
   onActionChosen = (path) => {
@@ -32,71 +40,98 @@ export default class Upload extends Component {
     });
   };
 
-  onFileUploaded = () => {
-    if (!this.state || (!this.state.filename && !this.state.uploading)) {
-      return null;
-    }
-    if (this.state.uploding) {
-      return <div> Uploading...</div>;
-    }
-    if (this.state.filename) {
-      if (this.state.proccessing) {
-        return <div> Proccessing Request...</div>;
-      } else {
-        return (
-          <div>
-            <button
-              onClick={() =>
-                this.onActionChosen("/lsm-table/" + this.state.filename)
-              }
-            >
-              Export lsm to CSV
-            </button>
-            <button
-              onClick={() =>
-                this.onActionChosen("/coor-table/" + this.state.filename)
-              }
-            >
-              Export coordination to csv
-            </button>
-            <button
-              onClick={() =>
-                this.onActionChosen("/lsm-graph/" + this.state.filename)
-              }
-            >
-              Export lsm to graphs
-            </button>
-            <button
-              onClick={() =>
-                this.onActionChosen("/coor-graph/" + this.state.filename)
-              }
-            >
-              Export coordination to graphs
-            </button>
-          </div>
-        );
-      }
-    }
+  renderButtons = () => {
+    const disabled =
+      this.state && (!this.state.filename || this.state.proccessing);
+    return (
+      <ButtonGroup>
+        <Button
+          onClick={() =>
+            this.onActionChosen("/lsm-table/" + this.state.filename)
+          }
+          variant="contained"
+          color="primary"
+          component="span"
+          disabled={disabled}
+        >
+          Export lsm to CSV
+        </Button>
+        <Button
+          onClick={() =>
+            this.onActionChosen("/coor-table/" + this.state.filename)
+          }
+          variant="contained"
+          color="primary"
+          component="span"
+          disabled={disabled}
+        >
+          Export coordination to csv
+        </Button>
+        <Button
+          onClick={() =>
+            this.onActionChosen("/lsm-graph/" + this.state.filename)
+          }
+          variant="contained"
+          color="primary"
+          component="span"
+          disabled={disabled}
+        >
+          Export lsm to graphs
+        </Button>
+        <Button
+          onClick={() =>
+            this.onActionChosen("/coor-graph/" + this.state.filename)
+          }
+          variant="contained"
+          color="primary"
+          component="span"
+          disabled={disabled}
+        >
+          Export coordination to graphs
+        </Button>
+      </ButtonGroup>
+    );
+  };
+
+  onActionProccessing = () => {
+    return this.state && this.state.proccessing ? (
+      <Paper
+        className={"progress-container"}
+        variant={"elevation"}
+        elevation={10}
+      >
+        <CircularProgress className={"progress-loader"} />
+      </Paper>
+    ) : null;
   };
 
   render() {
     return (
-      <div>
-        <form onSubmit={this.handleFileUpload}>
-          <div>
-            <input
-              ref={(ref) => {
-                this.uploadInput = ref;
-              }}
-              type="file"
-            />
-          </div>
-          <div>
-            <button>Upload</button>
-          </div>
-        </form>
-        {this.onFileUploaded()}
-      </div>
+      <Paper className={"container"} variant={"outlined"} square>
+        <Paper className={"section"} variant={"elevation"} elevation={10}>
+          <Button
+            onClick={() => this.setState({ open: true })}
+            variant="contained"
+            color="primary"
+            component="span"
+          >
+            Upload
+          </Button>
+          <DropzoneDialog
+            open={this.state.open}
+            onSave={this.handleFileUpload}
+            cancelButtonText={"Cancel"}
+            submitButtonText={"Uplaod"}
+            onClose={() => this.setState({ open: false })}
+            acceptedFiles={[".csv", ".xlsx", ".xls", ".xlsm", ".xlsb"]}
+            maxFileSize={500000000}
+          />
+        </Paper>
+        <Paper className={"section"} variant={"elevation"} elevation={5}>
+          {this.renderButtons()}
+        </Paper>
+        {this.onActionProccessing()}
+      </Paper>
     );
   }
 }

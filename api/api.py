@@ -34,13 +34,13 @@ def coor_table(filename):
 
 @app.route('/coor-graph/<filename>', methods=['GET'])
 def coor_graph(filename):
-    file_name = controller(filename, TMP_PARAMS, graph=True, lsm=False)
+    file_name = controller(filename, TMP_PARAMS, graphs=True, lsm=False)
     return redirect(url_for('download', filename=file_name))
 
 
 @app.route('/lsm-graph/<filename>', methods=['GET'])
 def lsm_graph(filename):
-    file_name = controller(filename, TMP_PARAMS, graph=True, lsm=True)
+    file_name = controller(filename, TMP_PARAMS, graphs=True, lsm=True)
     return redirect(url_for('download', filename=file_name))
 
 
