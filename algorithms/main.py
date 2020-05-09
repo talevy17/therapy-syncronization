@@ -80,7 +80,7 @@ def zip_graph(df, params, lsm):
 def controller(file_name, params=None, table=False, graphs=False, lsm=False):
     if not params:
         params = TMP_PARAMS
-    df = pd.read_csv('files/' + file_name)
+    df = pd.read_csv('../files/' + file_name)
     if table:
         return get_table(df, params, lsm)
     if graphs:
@@ -88,4 +88,4 @@ def controller(file_name, params=None, table=False, graphs=False, lsm=False):
 
 
 if __name__ == '__main__':
-    controller('MBM_camouflage_AllWithSBS.csv', TMP_PARAMS, lsm=False, graphs=True)
+    print(controller('MBM_camouflage_AllWithSBS.csv', TMP_PARAMS, lsm=True, graphs=True))
