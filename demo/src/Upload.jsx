@@ -15,26 +15,67 @@ export default class Upload extends Component {
       method: "POST",
       body: data,
     }).then((response) => {
-      this.setState({ uploading: false, url: response.url });
+      response
+        .text()
+        .then((filename) => this.setState({ uploading: false, filename }));
     });
   };
 
-  renderFileReady = () => {
+  onActionChosen = (path) => {
+    this.setState({ proccessing: true }, () => {
+      fetch(path, {
+        method: "GET",
+      }).then((response) => {
+        this.setState({ proccessing: false });
+        window.location.href = response.url;
+      });
+    });
+  };
+
+  onFileUploaded = () => {
     if (!this.state || (!this.state.url && !this.state.uploading)) {
       return null;
     }
     if (this.state.uploding) {
-      return <div> Proccessing Data...</div>;
+      return <div> Uploading...</div>;
     }
-    if (this.state.url) {
-      return (
-        <div>
-          <button onClick={() => (window.location.href = this.state.url)}>
-            Export to CSV
-          </button>
-          <button> Export graphs </button>
-        </div>
-      );
+    if (this.state.filename) {
+      if (this.state.proccessing) {
+        return <div> Proccessing Request...</div>;
+      } else {
+        return (
+          <div>
+            <button
+              onClick={() =>
+                this.onActionChosen("/lsm-table/" + this.state.filename)
+              }
+            >
+              Export lsm to CSV
+            </button>
+            <button
+              onClick={() =>
+                this.onActionChosen("/coor-table/" + this.state.filename)
+              }
+            >
+              Export coordination to csv
+            </button>
+            <button
+              onClick={() =>
+                this.onActionChosen("/lsm-graph/" + this.state.filename)
+              }
+            >
+              Export lsm to graphs
+            </button>
+            <button
+              onClick={() =>
+                this.onActionChosen("/coor-graph/" + this.state.filename)
+              }
+            >
+              Export coordination to graphs
+            </button>
+          </div>
+        );
+      }
     }
   };
 
@@ -54,7 +95,7 @@ export default class Upload extends Component {
             <button>Upload</button>
           </div>
         </form>
-        {this.renderFileReady()}
+        {this.onFileUploaded()}
       </div>
     );
   }

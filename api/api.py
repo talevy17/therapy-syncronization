@@ -3,6 +3,7 @@ import os
 from flask import Flask, request, redirect, url_for, send_from_directory, current_app
 from flask_cors import CORS
 from werkzeug.utils import secure_filename
+from algorithms.main import controller, TMP_PARAMS
 
 UPLOAD_FOLDER = 'files'
 ALLOWED_EXTENSIONS = {'txt', 'csv', 'xlsx', 'xlsb', 'xlsm', 'xls'}
@@ -16,20 +17,31 @@ def file_upload():
     file = request.files['file']
     filename = secure_filename(file.filename)
     file.save(os.path.join(UPLOAD_FOLDER, filename))
-
-    # process data and send
     return filename
-    # return redirect(url_for('download', filename=filename))
 
 
-@app.route('/lsm-table', methods=['POST'])
+@app.route('/lsm-table/<filename>', methods=['GET'])
 def lsm_table(filename):
-    file = request.files['file']
-    filename = secure_filename(file.filename)
-    file.save(os.path.join(UPLOAD_FOLDER, filename))
+    file_name = controller(filename, TMP_PARAMS, table=True, lsm=True)
+    return redirect(url_for('download', filename=file_name))
 
-    # process data and send
-    return redirect(url_for('download', filename=filename))
+
+@app.route('/coor-table/<filename>', methods=['GET'])
+def coor_table(filename):
+    file_name = controller(filename, TMP_PARAMS, table=True, lsm=False)
+    return redirect(url_for('download', filename=file_name))
+
+
+@app.route('/coor-graph/<filename>', methods=['GET'])
+def coor_graph(filename):
+    file_name = controller(filename, TMP_PARAMS, graph=True, lsm=False)
+    return redirect(url_for('download', filename=file_name))
+
+
+@app.route('/lsm-graph/<filename>', methods=['GET'])
+def lsm_graph(filename):
+    file_name = controller(filename, TMP_PARAMS, graph=True, lsm=True)
+    return redirect(url_for('download', filename=file_name))
 
 
 @app.route('/files/<path:filename>', methods=['GET', 'POST'])
