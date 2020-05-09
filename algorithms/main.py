@@ -1,3 +1,5 @@
+import os
+import zipfile
 import pandas as pd
 from dyad import Dyad
 import csv
@@ -11,15 +13,15 @@ TMP_PARAMS = {'dyad': 'dyad_n',
 
 
 # origin data
-def plot_lsm(df, col):
+def plot_lsm(df, col, directory):
     # list of all of the couples
     dyad_groups = df[col['dyad']].unique()
     for d in dyad_groups:
         dyad_obj = Dyad(d, col, df.loc[df[col['dyad']] == d])
-        dyad_obj.plot_lsm_graph()
+        dyad_obj.plot_lsm_graph(directory)
 
 
-def plot_coordination(df, col, plot_graph=False):
+def plot_coordination(df, col, directory, plot_graph=False):
     dyad_groups = df[col['dyad']].unique()
     c_val = {}
     for d in dyad_groups:
@@ -27,7 +29,7 @@ def plot_coordination(df, col, plot_graph=False):
         c_val[d] = dyad_obj.get_coordination_dyad()
     if plot_graph:
         from params import POS_TAG
-        coor_all_dyad_graph(c_val, ['speaker', 'target'], POS_TAG, pt_labels)
+        coor_all_dyad_graph(c_val, ['speaker', 'target'], POS_TAG, pt_labels, directory)
 
 
 def create_tables(df, col, file_name, att, lsm=False):
@@ -49,15 +51,35 @@ def get_table(df, params, lsm):
         create_tables(df, params, 'files/coordination_table.csv', coor_table_att)
 
 
+def create_zip_file(zip_file_name, zip_path):
+    zip_file = zipfile.ZipFile(zip_file_name, 'w', zipfile.ZIP_DEFLATED)
+    compress(zip_path, zip_file)
+    zip_file.close()
+
+
+def compress(path, ziph):
+    for root, dirs, files in os.walk(path):
+        for file in files:
+            ziph.write(os.path.join(root, file))
+
+
 def zip_graph(df, params, lsm):
     if lsm:
-        plot_lsm(df, params)
+        directory = os.path.abspath('../files/lsm_graphs/')
+        plot_lsm(df, params, directory)
+        create_zip_file('../files/lsm_graphs.zip', '../files/lsm_graphs')
+        return 'lsm_graphs.zip'
     else:
-        plot_coordination(df, params)
+        directory = os.path.abspath('../files/coordination_graphs/')
+        plot_coordination(df, params, directory)
+        create_zip_file('../files/coordination_graph.zip', '../files/coordination_graph')
+        return 'coordination_graph.zip'
 
 
-def controller(file_name, params, table=False, graphs=False, lsm=False):
-    df = pd.read_csv('files/' + file_name)
+def controller(file_name, params=None, table=False, graphs=False, lsm=False):
+    if not params:
+        params = TMP_PARAMS
+    df = pd.read_csv('../files/' + file_name)
     if table:
         get_table(df, params, lsm)
     if graphs:
@@ -65,4 +87,4 @@ def controller(file_name, params, table=False, graphs=False, lsm=False):
 
 
 if __name__ == '__main__':
-    controller('files/MBM_camouflage_AllWithSBS.csv', TMP_PARAMS)
+    controller('MBM_camouflage_AllWithSBS.csv', TMP_PARAMS, lsm=False, graphs=True)

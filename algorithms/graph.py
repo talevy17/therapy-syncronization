@@ -2,6 +2,7 @@ from statistics import mean
 import numpy as np
 import matplotlib.pyplot as plt
 from scipy.special import softmax
+import os
 
 
 def split_data_to_graph(data, speakers):
@@ -42,17 +43,17 @@ def merge_data(coor_all_dyad, speakers, att):
     return first_graph, second_graph
 
 
-def coor_all_dyad_graph(coor_all_dyad, speakers, att, att_labels):
+def coor_all_dyad_graph(coor_all_dyad, speakers, att, att_labels, directory):
     first_g, sec_g = merge_data(coor_all_dyad, speakers, att)
-    plot_graph([first_g['speaker'], first_g['target']],
+    plot_graph(directory, [first_g['speaker'], first_g['target']],
                ['speaker: therapist', 'speaker: client'], 's',
                'Speaker Coordination', att_labels)
-    plot_graph([sec_g['speaker'], sec_g['target']],
+    plot_graph(directory, [sec_g['speaker'], sec_g['target']],
                ['target: therapist', 'target: client'], 't',
                'Target Coordination', att_labels)
 
 
-def plot_graph(data_bars, labels, name, title, att):
+def plot_graph(directory, data_bars, labels, name, title, att):
     fig, ax = plt.subplots()
     index = np.arange(len(att))
     bar_width = 0.2
@@ -70,7 +71,10 @@ def plot_graph(data_bars, labels, name, title, att):
     plt.xticks(index + bar_width, att)
     plt.legend()
     plt.tight_layout()
-    plt.savefig(name)
+    if not os.path.exists(directory):
+        os.makedirs(directory)
+    plt.savefig(os.path.join(directory, name))
+    plt.close()
 
 
 '''
@@ -85,21 +89,24 @@ def calc_avg_over_sessions(lsm_match):
     return avg
 
 
-def match_graph_one_dyad(match_along_sessions, dyad_num):
+def match_graph_one_dyad(directory, match_along_sessions, dyad_num):
     plt.plot(calc_avg_over_sessions(match_along_sessions))
     plt.xlabel('session number')
     plt.ylabel('pos-tags LSM average')
     plt.title('Pos-tags matching over sessions')
-    plt.savefig(str(dyad_num))
-    plt.show()
+    if not os.path.exists(directory):
+        os.makedirs(directory)
+    plt.savefig(os.path.join(directory, str(dyad_num)))
+    plt.close()
 
 
 # only pos/neg use for now..
-def avg_graph(dyad):
-    avg_val = dyad.avg_lsm_score()
-    plt.plot(avg_val)
-    plt.xlabel('session number')
-    plt.ylabel('LSM avg')
-    plt.title('Positive and negative avg over sessions')
-    plt.savefig(str(dyad.dyad_num))
-    plt.show()
+# def avg_graph(dyad):
+#     avg_val = dyad.avg_lsm_score()
+#     plt.plot(avg_val)
+#     plt.xlabel('session number')
+#     plt.ylabel('LSM avg')
+#     plt.title('Positive and negative avg over sessions')
+#     todo - edit the path before using this function.
+#     plt.savefig(str(dyad.dyad_num))
+#     plt.close()

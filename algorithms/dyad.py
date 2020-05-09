@@ -77,8 +77,8 @@ class Dyad:
         first = self.speakers[0]
         return first if first is not speaker else self.speakers[1]
 
-    def plot_lsm_graph(self):
-        match_graph_one_dyad(self.get_lsm_dyad(), self.dyad_num)
+    def plot_lsm_graph(self, directory):
+        match_graph_one_dyad(directory, self.get_lsm_dyad(), self.dyad_num)
 
 
 def key_to_arr(dict):
