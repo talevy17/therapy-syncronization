@@ -28,11 +28,173 @@
     },
     {
       "key": "6vib0",
-      "text": "LSM - ",
-      "type": "header-three",
+      "text": "LSM - Language Style Matching is a measure in psychology that estimates how similar two people language style is synced in regard of function words.",
+      "type": "unstyled",
+      "depth": 0,
+      "inlineStyleRanges": [
+        {
+          "offset": 0,
+          "length": 3,
+          "style": "BOLD"
+        }
+      ],
+      "entityRanges": [],
+      "data": {}
+    },
+    {
+      "key": "f83r7",
+      "text": "There are nine classes of function words:",
+      "type": "unstyled",
       "depth": 0,
       "inlineStyleRanges": [],
       "entityRanges": [],
+      "data": {}
+    },
+    {
+      "key": "6tqte",
+      "text": "Personal pronouns",
+      "type": "unordered-list-item",
+      "depth": 0,
+      "inlineStyleRanges": [],
+      "entityRanges": [],
+      "data": {}
+    },
+    {
+      "key": "9c9hu",
+      "text": "Impersonal pronouns",
+      "type": "unordered-list-item",
+      "depth": 0,
+      "inlineStyleRanges": [],
+      "entityRanges": [],
+      "data": {}
+    },
+    {
+      "key": "c6p08",
+      "text": "Articles",
+      "type": "unordered-list-item",
+      "depth": 0,
+      "inlineStyleRanges": [],
+      "entityRanges": [],
+      "data": {}
+    },
+    {
+      "key": "3tquu",
+      "text": "Conjunctions",
+      "type": "unordered-list-item",
+      "depth": 0,
+      "inlineStyleRanges": [],
+      "entityRanges": [],
+      "data": {}
+    },
+    {
+      "key": "976eu",
+      "text": "Prepositions",
+      "type": "unordered-list-item",
+      "depth": 0,
+      "inlineStyleRanges": [],
+      "entityRanges": [],
+      "data": {}
+    },
+    {
+      "key": "dth9s",
+      "text": "Auxiliary verbs",
+      "type": "unordered-list-item",
+      "depth": 0,
+      "inlineStyleRanges": [],
+      "entityRanges": [],
+      "data": {}
+    },
+    {
+      "key": "d2qcn",
+      "text": "High-frequency adverbs",
+      "type": "unordered-list-item",
+      "depth": 0,
+      "inlineStyleRanges": [],
+      "entityRanges": [],
+      "data": {}
+    },
+    {
+      "key": "3cf58",
+      "text": "Negations",
+      "type": "unordered-list-item",
+      "depth": 0,
+      "inlineStyleRanges": [],
+      "entityRanges": [],
+      "data": {}
+    },
+    {
+      "key": "70g9l",
+      "text": "Quantifiers",
+      "type": "unordered-list-item",
+      "depth": 0,
+      "inlineStyleRanges": [],
+      "entityRanges": [],
+      "data": {}
+    },
+    {
+      "key": "1bf3q",
+      "text": "Given two people their LSM is derived as follows:",
+      "type": "unstyled",
+      "depth": 0,
+      "inlineStyleRanges": [],
+      "entityRanges": [],
+      "data": {}
+    },
+    {
+      "key": "eg14u",
+      "text": "1-[(|p1-p2|)/(p1+p2+0.0001)]",
+      "type": "code-block",
+      "depth": 0,
+      "inlineStyleRanges": [],
+      "entityRanges": [],
+      "data": {}
+    },
+    {
+      "key": "6f618",
+      "text": "Where p1 is the percentage of words from function word class p the first person used in the exchange and p2 respectively for the other.",
+      "type": "unstyled",
+      "depth": 0,
+      "inlineStyleRanges": [],
+      "entityRanges": [],
+      "data": {}
+    },
+    {
+      "key": "apu7d",
+      "text": "this nine classes are averaged to give the LSM of a dyad.",
+      "type": "unstyled",
+      "depth": 0,
+      "inlineStyleRanges": [],
+      "entityRanges": [],
+      "data": {}
+    },
+    {
+      "key": "5deub",
+      "text": "In our work we evaluate the LSM of a dyad by each session and overall.",
+      "type": "unstyled",
+      "depth": 0,
+      "inlineStyleRanges": [],
+      "entityRanges": [],
+      "data": {}
+    },
+    {
+      "key": "19f3h",
+      "text": "Our implementation is based on the paper Language Style Matching Predicts Relationship Initiation and Stability.",
+      "type": "unstyled",
+      "depth": 0,
+      "inlineStyleRanges": [
+        {
+          "offset": 41,
+          "length": 70,
+          "style": "UNDERLINE"
+        }
+      ],
+      "entityRanges": [
+        {
+          "offset": 41,
+          "length": 70,
+          "key": 1
+        }
+      ],
       "data": {}
     },
     {
@@ -54,17 +216,23 @@
         {
           "offset": 0,
           "length": 1,
-          "key": 1
+          "key": 2
         }
       ],
       "data": {}
     },
     {
       "key": "1gp4j",
-      "text": "ECHOS OF POWER - ",
-      "type": "header-three",
+      "text": "ECHOS OF POWER - TBD.",
+      "type": "unstyled",
       "depth": 0,
-      "inlineStyleRanges": [],
+      "inlineStyleRanges": [
+        {
+          "offset": 0,
+          "length": 14,
+          "style": "BOLD"
+        }
+      ],
       "entityRanges": [],
       "data": {}
     }
@@ -76,19 +244,28 @@
       "data": {
         "type": "single",
         "config": {
-          "size": "large",
+          "size": "medium",
           "alignment": "center",
           "textWrap": "nowrap"
         }
       }
     },
     "1": {
+      "type": "LINK",
+      "mutability": "MUTABLE",
+      "data": {
+        "url": "https://drive.google.com/file/d/0B0E89dQvKDAzeEwxUzJlZW5vV0RVYkRkYUhMUHV6RlpVR1pv/view",
+        "target": "_blank",
+        "rel": "noopener"
+      }
+    },
+    "2": {
       "type": "wix-draft-plugin-divider",
       "mutability": "IMMUTABLE",
       "data": {
         "type": "single",
         "config": {
-          "size": "large",
+          "size": "medium",
           "alignment": "center",
           "textWrap": "nowrap"
         }

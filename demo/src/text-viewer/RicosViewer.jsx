@@ -1,4 +1,4 @@
-import React, { PureComponent } from "react";
+import React from "react";
 import { RichContentWrapper } from "wix-rich-content-wrapper";
 import { RichContentViewer } from "wix-rich-content-viewer";
 import { pluginDivider } from "wix-rich-content-plugin-divider/dist/module.viewer";
@@ -8,41 +8,39 @@ import {
   pluginTextHighlight,
 } from "wix-rich-content-plugin-text-color/dist/module.viewer";
 import { pluginLineSpacing } from "wix-rich-content-plugin-line-spacing/dist/module.viewer";
+import { pluginLink } from "wix-rich-content-plugin-link/dist/module.viewer";
 
 import { Paper } from "@material-ui/core";
 import "./RicosViewer.scss";
+import "wix-rich-content-plugin-divider/dist/styles.min.css";
+import "wix-rich-content-plugin-image/dist/styles.min.css";
+import "wix-rich-content-plugin-link/dist/styles.min.css";
+import "wix-rich-content-plugin-line-spacing/dist/styles.min.css";
+import "wix-rich-content-plugin-text-color/dist/styles.min.css";
+import "wix-rich-content-wrapper/dist/styles.min.css";
 
-export default class RicosViewer extends PureComponent {
-  constructor(props) {
-    super(props);
-    this.plugins = [
-      pluginDivider(),
-      pluginImage(),
-      pluginLineSpacing(),
-      pluginTextColor(),
-      pluginTextHighlight(),
-    ];
-  }
-  render() {
-    const { contentState, palette, isMobile, addAnchors } = this.props;
-    const theme = palette
-      ? { theme: "Palette", palette }
-      : { theme: "Default" };
-    return (
-      <Paper
-        className={"container"}
-        variant={"elevation"}
-        square
-        elevation={10}
-      >
-        <RichContentWrapper plugins={this.plugins} {...theme}>
-          <RichContentViewer
-            initialState={contentState}
-            isMobile={isMobile}
-            addAnchors={addAnchors}
-          />
-        </RichContentWrapper>
-      </Paper>
-    );
-  }
-}
+const plugins = [
+  pluginLink(),
+  pluginDivider(),
+  pluginImage(),
+  pluginLineSpacing(),
+  pluginTextColor(),
+  pluginTextHighlight(),
+];
+
+const RicosViewer = ({ contentState, palette, isMobile, addAnchors }) => {
+  const theme = palette ? { theme: "Palette", palette } : { theme: "Default" };
+  return (
+    <Paper className={"viewer"} variant={"elevation"} square elevation={10}>
+      <RichContentWrapper plugins={plugins} {...theme}>
+        <RichContentViewer
+          initialState={contentState}
+          isMobile={isMobile}
+          addAnchors={addAnchors}
+        />
+      </RichContentWrapper>
+    </Paper>
+  );
+};
+
+export default RicosViewer;
