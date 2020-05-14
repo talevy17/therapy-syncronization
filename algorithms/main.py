@@ -73,7 +73,7 @@ def zip_graph(df, params, lsm):
     else:
         directory = os.path.abspath('files/coordination_graphs/')
         plot_coordination(df, params, directory)
-        create_zip_file('files/coordination_graph.zip', 'files/coordination_graph')
+        create_zip_file('files/coordination_graphs.zip', 'files/coordination_graphs')
         return 'coordination_graph.zip'
 
 
