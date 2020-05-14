@@ -16,7 +16,6 @@
     "react-dom": "^16.13.1",
     "react-scripts": "3.4.1",
     "typescript": "^3.9.2",
-    "wix-rich-content-common": "^7.6.1",
     "wix-rich-content-plugin-divider": "^7.6.1",
     "wix-rich-content-plugin-image": "^7.6.1",
     "wix-rich-content-plugin-line-spacing": "^7.6.1",
@@ -30,7 +29,9 @@
     "start-server": "cd .. && venv/bin/flask run --no-debugger",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "clean": "rm -rf node_modules && rm -f package-lock.json",
+    "reinstall": "npm run clean && npm i"
   },
   "eslintConfig": {
     "extends": "react-app"
