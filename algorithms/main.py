@@ -45,12 +45,12 @@ def get_table(df, params, lsm):
     if lsm:
         file_name = 'lsm_table.csv'
         lsm_table_att = ['dyad_number', 'session_key'] + POS_TAG + ['lsm_avg']
-        create_tables(df, params, 'files/'+file_name, lsm_table_att, lsm=True)
+        create_tables(df, params, 'files/' + file_name, lsm_table_att, lsm=True)
         return file_name
     else:
         file_name = 'coordination_table.csv'
         coor_table_att = get_coor_table_att()
-        create_tables(df, params, 'files/'+file_name, coor_table_att)
+        create_tables(df, params, 'files/' + file_name, coor_table_att)
         return file_name
 
 
@@ -69,22 +69,22 @@ def compress(path, ziph):
 def zip_graph(df, params, lsm):
     if lsm:
         file_name = 'lsm_graphs'
-        directory = os.path.abspath('files/'+file_name+'/')
+        directory = os.path.abspath('files/' + file_name + '/')
         plot_lsm(df, params, directory)
-        create_zip_file('files/'+file_name+'.zip', 'files/'+file_name)
-        return file_name+'.zip'
+        create_zip_file('files/' + file_name + '.zip', 'files/' + file_name)
+        return file_name + '.zip'
     else:
         file_name = 'coordination_graphs'
-        directory = os.path.abspath('files/'+file_name+'/')
+        directory = os.path.abspath('files/' + file_name + '/')
         plot_coordination(df, params, directory)
-        create_zip_file('files/'+file_name+'.zip', 'files/'+file_name)
-        return file_name+'.zip'
+        create_zip_file('files/' + file_name + '.zip', 'files/' + file_name)
+        return file_name + '.zip'
 
 
 def controller(file_name, params=None, table=False, graphs=False, lsm=False):
     if not params:
         params = TMP_PARAMS
-    df = pd.read_csv('../files/' + file_name)
+    df = pd.read_csv('files/' + file_name)
     if table:
         return get_table(df, params, lsm)
     if graphs:
