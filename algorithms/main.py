@@ -43,13 +43,15 @@ def create_tables(df, col, file_name, att, lsm=False):
 
 def get_table(df, params, lsm):
     if lsm:
+        file_name = 'lsm_table.csv'
         lsm_table_att = ['dyad_number', 'session_key'] + POS_TAG + ['lsm_avg']
-        create_tables(df, params, 'files/lsm_table.csv', lsm_table_att, lsm=True)
-        return 'lsm_table.csv'
+        create_tables(df, params, 'files/'+file_name, lsm_table_att, lsm=True)
+        return file_name
     else:
+        file_name = 'coordination_table.csv'
         coor_table_att = get_coor_table_att()
-        create_tables(df, params, 'files/coordination_table.csv', coor_table_att)
-        return 'coordination_table.csv'
+        create_tables(df, params, 'files/'+file_name, coor_table_att)
+        return file_name
 
 
 def create_zip_file(zip_file_name, zip_path):
@@ -66,21 +68,23 @@ def compress(path, ziph):
 
 def zip_graph(df, params, lsm):
     if lsm:
-        directory = os.path.abspath('files/lsm_graphs/')
+        file_name = 'lsm_graphs'
+        directory = os.path.abspath('files/'+file_name+'/')
         plot_lsm(df, params, directory)
-        create_zip_file('files/lsm_graphs.zip', 'files/lsm_graphs')
-        return 'lsm_graphs.zip'
+        create_zip_file('files/'+file_name+'.zip', 'files/'+file_name)
+        return file_name+'.zip'
     else:
-        directory = os.path.abspath('files/coordination_graphs/')
+        file_name = 'coordination_graphs'
+        directory = os.path.abspath('files/'+file_name+'/')
         plot_coordination(df, params, directory)
-        create_zip_file('files/coordination_graphs.zip', 'files/coordination_graphs')
-        return 'coordination_graph.zip'
+        create_zip_file('files/'+file_name+'.zip', 'files/'+file_name)
+        return file_name+'.zip'
 
 
 def controller(file_name, params=None, table=False, graphs=False, lsm=False):
     if not params:
         params = TMP_PARAMS
-    df = pd.read_csv('files/' + file_name)
+    df = pd.read_csv('../files/' + file_name)
     if table:
         return get_table(df, params, lsm)
     if graphs:
