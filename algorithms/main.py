@@ -27,6 +27,7 @@ def plot_coordination(df, col, directory):
     for d in dyad_groups:
         dyad_obj = Dyad(d, col, df.loc[df[col['dyad']] == d])
         c_val[d] = dyad_obj.get_coordination_dyad()
+        break
     coor_all_dyad_graph(c_val, ['speaker', 'target'], POS_TAG, pt_labels, directory)
 
 
@@ -65,21 +66,21 @@ def compress(path, ziph):
 
 def zip_graph(df, params, lsm):
     if lsm:
-        directory = os.path.abspath('../files/lsm_graphs/')
+        directory = os.path.abspath('files/lsm_graphs/')
         plot_lsm(df, params, directory)
-        create_zip_file('../files/lsm_graphs.zip', '../files/lsm_graphs')
+        create_zip_file('files/lsm_graphs.zip', 'files/lsm_graphs')
         return 'lsm_graphs.zip'
     else:
-        directory = os.path.abspath('../files/coordination_graphs/')
+        directory = os.path.abspath('files/coordination_graphs/')
         plot_coordination(df, params, directory)
-        create_zip_file('../files/coordination_graphs.zip', '../files/coordination_graphs')
-        return 'coordination_graphs.zip'
+        create_zip_file('files/coordination_graph.zip', 'files/coordination_graph')
+        return 'coordination_graph.zip'
 
 
 def controller(file_name, params=None, table=False, graphs=False, lsm=False):
     if not params:
         params = TMP_PARAMS
-    df = pd.read_csv('../files/' + file_name)
+    df = pd.read_csv('files/' + file_name)
     if table:
         return get_table(df, params, lsm)
     if graphs:
@@ -87,4 +88,4 @@ def controller(file_name, params=None, table=False, graphs=False, lsm=False):
 
 
 if __name__ == '__main__':
-    print(controller('MBM_camouflage_AllWithSBS.csv', TMP_PARAMS, lsm=False, graphs=True))
+    print(controller('MBM_camouflage_AllWithSBS.csv', TMP_PARAMS, lsm=True, graphs=True))
