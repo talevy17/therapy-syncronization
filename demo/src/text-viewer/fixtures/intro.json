@@ -28,21 +28,153 @@
     },
     {
       "key": "6vib0",
-      "text": "We should write some content (:",
+      "text": "THE LAB",
+      "type": "header-two",
+      "depth": 0,
+      "inlineStyleRanges": [
+        {
+          "offset": 0,
+          "length": 7,
+          "style": "{\"FG\":\"#000000\"}"
+        }
+      ],
+      "entityRanges": [],
+      "data": {
+        "textAlignment": "center"
+      }
+    },
+    {
+      "key": "9eh2a",
+      "text": "Natalie Shapira’s lab is a collaboration of BIU NLP and Psychology.",
       "type": "unstyled",
       "depth": 0,
       "inlineStyleRanges": [
         {
           "offset": 0,
-          "length": 31,
-          "style": "{\"FG\":\"#7917bc\"}"
-        },
-        {
-          "offset": 0,
-          "length": 31,
-          "style": "BOLD"
+          "length": 67,
+          "style": "{\"FG\":\"#000000\"}"
         }
       ],
+      "entityRanges": [],
+      "data": {
+        "textAlignment": "left"
+      }
+    },
+    {
+      "key": "c5tqp",
+      "text": "The goal of the reasearch is using ML, Vision and NLP methods to determine a person’s mental health, devise recommendations and estimate the efficiency of a therapy session.",
+      "type": "unstyled",
+      "depth": 0,
+      "inlineStyleRanges": [
+        {
+          "offset": 0,
+          "length": 173,
+          "style": "{\"FG\":\"#000000\"}"
+        }
+      ],
+      "entityRanges": [],
+      "data": {
+        "textAlignment": "left"
+      }
+    },
+    {
+      "key": "8u4le",
+      "text": "The data consists of films, records and transcriptions of therapy sessions where in each research conducted a certain criteria is chosen to check its effects on the goals that we’ve portrayed above",
+      "type": "unstyled",
+      "depth": 0,
+      "inlineStyleRanges": [
+        {
+          "offset": 0,
+          "length": 197,
+          "style": "{\"FG\":\"#000000\"}"
+        }
+      ],
+      "entityRanges": [],
+      "data": {
+        "textAlignment": "left"
+      }
+    },
+    {
+      "key": "8pm2v",
+      "text": "Before and after each session the therapist and the client fill forms regarding the sessions, from which we conclude the level of satisfaction and efficiency of a session from both the therapist’s and client’s perspectives.",
+      "type": "unstyled",
+      "depth": 0,
+      "inlineStyleRanges": [],
+      "entityRanges": [],
+      "data": {
+        "textAlignment": "left"
+      }
+    },
+    {
+      "key": "5iun8",
+      "text": "",
+      "type": "unstyled",
+      "depth": 0,
+      "inlineStyleRanges": [],
+      "entityRanges": [],
+      "data": {}
+    },
+    {
+      "key": "alrla",
+      "text": " ",
+      "type": "atomic",
+      "depth": 0,
+      "inlineStyleRanges": [],
+      "entityRanges": [
+        {
+          "offset": 0,
+          "length": 1,
+          "key": 1
+        }
+      ],
+      "data": {}
+    },
+    {
+      "key": "667pm",
+      "text": "OUR PROJECT",
+      "type": "header-two",
+      "depth": 0,
+      "inlineStyleRanges": [],
+      "entityRanges": [],
+      "data": {
+        "textAlignment": "center"
+      }
+    },
+    {
+      "key": "f0t4o",
+      "text": "Our project consists of implementing tools to evaluate the connection between a therapist and a client through synchronisation and language effects.",
+      "type": "unstyled",
+      "depth": 0,
+      "inlineStyleRanges": [],
+      "entityRanges": [],
+      "data": {
+        "textAlignment": "left"
+      }
+    },
+    {
+      "key": "1d16a",
+      "text": "This demo site showcases the results of our experiments with LSM and language style influences between therapists and clients.",
+      "type": "unstyled",
+      "depth": 0,
+      "inlineStyleRanges": [],
+      "entityRanges": [],
+      "data": {}
+    },
+    {
+      "key": "b5ho6",
+      "text": "For further explanation see the Algorithms and the Results tabs.",
+      "type": "unstyled",
+      "depth": 0,
+      "inlineStyleRanges": [],
+      "entityRanges": [],
+      "data": {}
+    },
+    {
+      "key": "cp2v1",
+      "text": "We also expose our tools to be easily used to measure LSM and influences on your own data - see Upload your own data tab.",
+      "type": "unstyled",
+      "depth": 0,
+      "inlineStyleRanges": [],
       "entityRanges": [],
       "data": {}
     }
@@ -54,7 +186,19 @@
       "data": {
         "type": "single",
         "config": {
-          "size": "large",
+          "size": "medium",
+          "alignment": "center",
+          "textWrap": "nowrap"
+        }
+      }
+    },
+    "1": {
+      "type": "wix-draft-plugin-divider",
+      "mutability": "IMMUTABLE",
+      "data": {
+        "type": "single",
+        "config": {
+          "size": "medium",
           "alignment": "center",
           "textWrap": "nowrap"
         }
