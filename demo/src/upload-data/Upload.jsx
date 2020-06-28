@@ -44,7 +44,7 @@ export default class Upload extends Component {
           open={this.state.open}
           onSave={this.handleFileUpload}
           cancelButtonText={"Cancel"}
-          submitButtonText={"Uplaod"}
+          submitButtonText={"Upload"}
           onClose={() => this.setState({ open: false })}
           acceptedFiles={[".csv", ".xlsx", ".xls", ".xlsm", ".xlsb"]}
           maxFileSize={500000000}

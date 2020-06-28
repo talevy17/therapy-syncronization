@@ -27,7 +27,6 @@ export default class UploadDataSection extends Component {
 
   onActionChosen = (path) => {
     const { URLParams } = this.state;
-    // console.log(path);
     let url = new URL("http://localhost:5000" + path);
     Object.keys(URLParams).forEach((key) =>
       url.searchParams.append(key, URLParams[key])
