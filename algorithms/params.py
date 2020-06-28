@@ -1,3 +1,5 @@
+NUM_OF_CHECK = 4
+
 POS_TAG = ['adverb_pos_tag',
            'at_pos_tag',
            'cc_pos_tag',

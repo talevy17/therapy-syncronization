@@ -93,7 +93,7 @@ def match_graph_one_dyad(directory, match_along_sessions, dyad_num):
     plt.plot(calc_avg_over_sessions(match_along_sessions))
     plt.xlabel('session number')
     plt.ylabel('pos-tags LSM average')
-    plt.title('Pos-tags matching over sessions')
+    plt.title('LSM matching over sessions')
     if not os.path.exists(directory):
         os.makedirs(directory)
     plt.savefig(os.path.join(directory, str(dyad_num)))

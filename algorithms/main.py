@@ -1,8 +1,8 @@
 import os
 import zipfile
 import pandas as pd
-from algorithms.dyad import Dyad
 import csv
+from algorithms.dyad import Dyad
 from algorithms.params import POS_TAG, get_coor_table_att, pt_labels
 from algorithms.graph import coor_all_dyad_graph
 
@@ -92,4 +92,4 @@ def controller(file_name, params=None, table=False, graphs=False, lsm=False):
 
 
 if __name__ == '__main__':
-    print(controller('MBM_camouflage_AllWithSBS.csv', TMP_PARAMS, lsm=True, graphs=True))
+    print(controller('MBM_camouflage_AllWithSBS.csv', TMP_PARAMS, lsm=False, graphs=True))

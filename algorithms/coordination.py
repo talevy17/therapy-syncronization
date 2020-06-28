@@ -1,18 +1,18 @@
 from statistics import mean
+import pandas as pd
+from params import POS_TAG
 
 PERSON = 'event_speaker'
 TURN = 'dialog_turn_main_speaker'
+col = ['s:t', 't:s', 'speaker', 'target'] + POS_TAG + ['avg']
 
 
 class Coordination:
     def __init__(self, df):
         self.df = df
-        self.speaker_to_target = {}
-        self.target_to_speaker = {}
+        self.coorination_df = pd.DataFrame(columns=col)
 
     def get_coor_by_speaker(self, speaker, target, attributes, threshold=1):
-        if speaker in self.speaker_to_target and target in self.target_to_speaker:
-            return self.speaker_to_target[speaker], self.target_to_speaker[target]
         general_speaker, general_target, tagged_exchanges, speaker_tag, target_tag = self.init_dictionaries(attributes)
         curr = target
         start = True
@@ -43,31 +43,34 @@ class Coordination:
                     speaker_tag[tag] += row[tag]
         self.get_probs_by_tags(attributes, speaker,
                                target, total_exchanges, general_target, general_speaker, tagged_exchanges)
-        return self.speaker_to_target[speaker], self.target_to_speaker[target]
+        return self.coorination_df
 
-    def add_avg_to_dict(self, speaker, target):
-        self.speaker_to_target[speaker]['avg'] = mean(list(self.speaker_to_target[speaker].values()))
-        self.target_to_speaker[target]['avg'] = mean(list(self.target_to_speaker[target].values()))
+    def add_avg(self, speaker, target):
+        speaker['avg'] = mean(list(speaker.values()))
+        target['avg'] = mean(list(target.values()))
 
     def get_probs_by_tags(self, attributes, speaker, target, total_exchanges,
                           general_target, general_speaker, tagged_exchanges):
+        speaker_to_target = {}
+        target_to_speaker = {}
         for tag in attributes:
-            if speaker not in self.speaker_to_target:
-                self.speaker_to_target[speaker] = {}
-            if target not in self.target_to_speaker:
-                self.target_to_speaker[target] = {}
             if total_exchanges > 0:
                 general_target[tag] /= total_exchanges
                 general_speaker[tag] /= total_exchanges
                 conditioned = tagged_exchanges[tag] / total_exchanges
-                self.speaker_to_target[speaker][tag] = (conditioned / (general_target[tag] + 0.001)) - general_speaker[
-                    tag]
-                self.target_to_speaker[target][tag] = (conditioned / (general_speaker[tag] + 0.001)) - general_target[
-                    tag]
+                speaker_to_target[tag] = (conditioned / (general_target[tag] + 0.001)) - general_speaker[tag]
+                target_to_speaker[tag] = (conditioned / (general_speaker[tag] + 0.001)) - general_target[tag]
             else:
-                self.speaker_to_target[speaker][tag] = 0
-                self.target_to_speaker[target][tag] = 0
-        self.add_avg_to_dict(speaker, target)
+                speaker_to_target[tag] = 0
+                target_to_speaker[tag] = 0
+        self.add_avg(speaker_to_target, target_to_speaker)
+        self.add_prbs_to_df(speaker_to_target, target_to_speaker, speaker, target)
+
+    def add_prbs_to_df(self, speaker_to_target, target_to_speaker, speaker, target):
+        speaker_to_target.update({'s:t': '1', 't:s': '0', 'speaker': speaker, 'target': target})
+        target_to_speaker.update({'s:t': '0', 't:s': '1', 'speaker': target, 'target': speaker})
+        self.coorination_df=self.coorination_df.append(speaker_to_target, ignore_index=True)
+        self.coorination_df=self.coorination_df.append(target_to_speaker, ignore_index=True)
 
     @staticmethod
     def init_dictionaries(attributes):

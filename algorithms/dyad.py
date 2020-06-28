@@ -2,6 +2,7 @@ from algorithms.session import Session
 from algorithms.graph import match_graph_one_dyad
 from algorithms.params import POS_TAG
 from statistics import mean
+import pandas as pd
 
 
 class Dyad:
@@ -18,28 +19,23 @@ class Dyad:
         # transcription_hard_key : session
         sessions = {}
         for tr in tr_groups:
+            session_name = str(self.dyad_num) + '_' + str(tr)
             s_df = self.df.loc[self.df[self.col['transcription']] == tr]
             key = s_df['transcription_hard_key'].iloc[0]
-            sessions[key] = Session(s_df, key, self.attributes, self.speakers)
+            sessions[key] = Session(s_df, key, self.attributes, self.speakers, session_name)
         return sessions
 
     def get_coordination_dyad(self):
-        c_client_as_speaker, c_client_as_target = [], []
+        coordination_by_dyad_df = pd.DataFrame()
         for session in self.sessions.values():
-            coordination = session.get_coordination()
-            c_client_as_speaker.append(coordination[0])
-            c_client_as_target.append(coordination[1])
-        return c_client_as_speaker, c_client_as_target
+            coordination_by_dyad_df = coordination_by_dyad_df.append(session.get_coordination())
+        return coordination_by_dyad_df
 
     def get_lsm_dyad(self):
-        return [session.get_LSM() for session in self.sessions.values()]
-
-    def avg_lsm_score(self):
-        matches = self.get_lsm_dyad()
-        avg = []
-        for m in matches:
-            avg.append((m[0] + m[1]) / 2)
-        return avg
+        lst = [session.get_LSM() for session in self.sessions.values()]
+        index_name = [str(self.dyad_num)+'_'+str(i) for i in range(len(lst))]
+        lsm_df = pd.DataFrame(lst, columns=POS_TAG, index=index_name)
+        return lsm_df
 
     def tables(self, writer, lsm):
         self.lsm_table(writer) if lsm else self.coordination_table(writer)
