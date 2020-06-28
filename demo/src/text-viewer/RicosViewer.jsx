@@ -37,7 +37,7 @@ const Viewer = ({ contentState, palette, isMobile, addAnchors }) => {
         {...theme}
         isMobile={isMobile}
         addAnchors={addAnchors}
-      ></RicosViewer>
+      />
     </Paper>
   );
 };
