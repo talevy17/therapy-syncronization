@@ -22,6 +22,11 @@ def file_upload():
 
 @app.route('/lsm-table/<filename>', methods=['GET'])
 def lsm_table(filename):
+    event_speaker = request.args.get("eventSpeaker")
+    measures = request.args.get("measures")
+    session = request.args.get("session")
+    dyad = request.args.get("dyad")
+    print(event_speaker)
     file_name = controller(filename, TMP_PARAMS, table=True, lsm=True)
     return redirect(url_for('download', filename=file_name))
 
