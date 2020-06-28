@@ -5,6 +5,10 @@
 }
 
 .section {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: flex-start;
+  align-items: center;
   padding: 20px;
   background-color: lightsalmon;
 }
