@@ -1,6 +1,6 @@
 import React from "react";
-import { RichContentWrapper } from "wix-rich-content-wrapper";
-import { RichContentViewer } from "wix-rich-content-viewer";
+import { RicosViewer } from "ricos-viewer";
+import "ricos-viewer/dist/styles.min.css";
 import { pluginDivider } from "wix-rich-content-plugin-divider/dist/module.viewer";
 import { pluginImage } from "wix-rich-content-plugin-image/dist/module.viewer";
 import {
@@ -17,7 +17,6 @@ import "wix-rich-content-plugin-image/dist/styles.min.css";
 import "wix-rich-content-plugin-link/dist/styles.min.css";
 import "wix-rich-content-plugin-line-spacing/dist/styles.min.css";
 import "wix-rich-content-plugin-text-color/dist/styles.min.css";
-import "wix-rich-content-wrapper/dist/styles.min.css";
 
 const plugins = [
   pluginLink(),
@@ -28,19 +27,19 @@ const plugins = [
   pluginTextHighlight(),
 ];
 
-const RicosViewer = ({ contentState, palette, isMobile, addAnchors }) => {
+const Viewer = ({ contentState, palette, isMobile, addAnchors }) => {
   const theme = palette ? { theme: "Palette", palette } : { theme: "Default" };
   return (
     <Paper className={"viewer"} variant={"elevation"} square elevation={10}>
-      <RichContentWrapper plugins={plugins} {...theme}>
-        <RichContentViewer
-          initialState={contentState}
-          isMobile={isMobile}
-          addAnchors={addAnchors}
-        />
-      </RichContentWrapper>
+      <RicosViewer
+        content={contentState}
+        plugins={plugins}
+        {...theme}
+        isMobile={isMobile}
+        addAnchors={addAnchors}
+      ></RicosViewer>
     </Paper>
   );
 };
 
-export default RicosViewer;
+export default Viewer;

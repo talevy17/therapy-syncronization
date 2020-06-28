@@ -94,13 +94,9 @@ export default class Upload extends Component {
 
   onActionProccessing = () => {
     return this.state && this.state.proccessing ? (
-      <Paper
-        className={"progress-container"}
-        variant={"elevation"}
-        elevation={10}
-      >
+      <div className={"progress-container"}>
         <CircularProgress className={"progress-loader"} />
-      </Paper>
+      </div>
     ) : null;
   };
 
