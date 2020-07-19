@@ -1,5 +1,5 @@
 from algorithms.session import Session
-from algorithms.graph import match_graph_one_dyad
+from algorithms.graph import match_graph_one_dyad, coordination_graph_one_dyad
 from algorithms.params import POS_TAG
 from statistics import mean
 import pandas as pd
@@ -34,7 +34,8 @@ class Dyad:
     def get_lsm_dyad(self):
         lst = [session.get_LSM() for session in self.sessions.values()]
         index_name = [str(self.dyad_num)+'_'+str(i) for i in range(len(lst))]
-        lsm_df = pd.DataFrame(lst, columns=POS_TAG, index=index_name)
+        col = POS_TAG+['avg']
+        lsm_df = pd.DataFrame(lst, columns=col, index=index_name)
         return lsm_df
 
     def tables(self, writer, lsm):
@@ -75,6 +76,9 @@ class Dyad:
 
     def plot_lsm_graph(self, directory):
         match_graph_one_dyad(directory, self.get_lsm_dyad(), self.dyad_num)
+
+    def plot_coordination_graph(self, directory):
+        coordination_graph_one_dyad(directory, self.get_coordination_dyad(), self.dyad_num)
 
 
 def key_to_arr(dict):

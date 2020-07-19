@@ -31,3 +31,5 @@ def get_coor_table_att():
 pt_labels = ['adv', 'at', 'cc', 'conj', 'cop', 'def',
              'dt', 'dtt', 'ex', 'in', 'md', 'pos',
              'prep', 'prp', 'qw', 'rb', 'rel', 's_prn', 'tmp']
+
+speakers = ['Client', 'Therapist']

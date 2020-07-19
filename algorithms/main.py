@@ -3,8 +3,7 @@ import zipfile
 import pandas as pd
 import csv
 from algorithms.dyad import Dyad
-from algorithms.params import POS_TAG, get_coor_table_att, pt_labels
-from algorithms.graph import coor_all_dyad_graph
+from algorithms.params import POS_TAG, get_coor_table_att
 
 TMP_PARAMS = {'dyad': 'dyad_n',
               'transcription': 'transcription_n',
@@ -23,12 +22,11 @@ def plot_lsm(df, col, directory):
 
 def plot_coordination(df, col, directory):
     dyad_groups = df[col['dyad']].unique()
-    c_val = {}
     for d in dyad_groups:
         dyad_obj = Dyad(d, col, df.loc[df[col['dyad']] == d])
-        c_val[d] = dyad_obj.get_coordination_dyad()
+        dyad_obj.plot_coordination_graph(directory)
         break
-    coor_all_dyad_graph(c_val, ['speaker', 'target'], POS_TAG, pt_labels, directory)
+    # coor_all_dyad_graph(c_val, ['speaker', 'target'], POS_TAG, pt_labels, directory)
 
 
 def create_tables(df, col, file_name, att, lsm=False):
