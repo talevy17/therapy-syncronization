@@ -14,13 +14,13 @@
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-scripts": "3.4.1",
-    "ricos-viewer": "^7.10.7",
+    "ricos-viewer": "^7.16.3",
     "typescript": "^3.9.2",
-    "wix-rich-content-plugin-divider": "^7.10.7",
-    "wix-rich-content-plugin-image": "^7.10.7",
-    "wix-rich-content-plugin-line-spacing": "^7.10.7",
-    "wix-rich-content-plugin-link": "^7.10.7",
-    "wix-rich-content-plugin-text-color": "^7.10.7"
+    "wix-rich-content-plugin-divider": "^7.16.3",
+    "wix-rich-content-plugin-image": "^7.16.3",
+    "wix-rich-content-plugin-line-spacing": "^7.16.3",
+    "wix-rich-content-plugin-link": "^7.16.3",
+    "wix-rich-content-plugin-text-color": "^7.16.3"
   },
   "scripts": {
     "start": "react-scripts start",

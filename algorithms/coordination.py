@@ -1,6 +1,6 @@
 from statistics import mean
 import pandas as pd
-from params import POS_TAG
+from algorithms.params import POS_TAG
 
 PERSON = 'event_speaker'
 TURN = 'dialog_turn_main_speaker'

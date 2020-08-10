@@ -1,6 +1,6 @@
 import matplotlib.pyplot as plt
 import os
-from params import speakers
+from algorithms.params import speakers
 
 
 def set_x_ax(df, dyad_num):

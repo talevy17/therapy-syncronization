@@ -39,10 +39,10 @@ def create_tables(df, col, file_name, att, lsm=False):
             dyad_obj.tables(writer, lsm)
 
 
-def get_table(df, params, lsm):
+def get_table(df, params, measures,lsm):
     if lsm:
         file_name = 'lsm_table.csv'
-        lsm_table_att = ['dyad_number', 'session_key'] + POS_TAG + ['lsm_avg']
+        lsm_table_att = ['dyad_number', 'session_key'] + measures + ['lsm_avg']
         create_tables(df, params, 'files/' + file_name, lsm_table_att, lsm=True)
         return file_name
     else:
@@ -79,12 +79,14 @@ def zip_graph(df, params, lsm):
         return file_name + '.zip'
 
 
-def controller(file_name, params=None, table=False, graphs=False, lsm=False):
+def controller(file_name, params=None, measures=None, table=False, graphs=False, lsm=False):
     if not params:
         params = TMP_PARAMS
+    if not measures:
+        measures = POS_TAG
     df = pd.read_csv('files/' + file_name)
     if table:
-        return get_table(df, params, lsm)
+        return get_table(df, params, measures, lsm)
     if graphs:
         return zip_graph(df, params, lsm)
 

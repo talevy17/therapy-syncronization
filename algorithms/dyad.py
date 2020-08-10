@@ -45,16 +45,17 @@ class Dyad:
         coor_val = self.get_coordination_dyad()
         sessions_keys = key_to_arr(self.sessions)
         for speaker in range(len(coor_val)):
-            for i in range(len(coor_val[speaker])):
+            for i in range(len(coor_val.iloc[speaker])):
+                print(coor_val.iloc[speaker][i])
                 writer.writerow(self.coor_row(sessions_keys[i],
                                               self.speakers[speaker],
-                                              coor_val[speaker][i]))
+                                              coor_val.iloc[speaker][i]))
 
     def lsm_table(self, writer):
         lsm_val = self.get_lsm_dyad()
         sessions_keys = key_to_arr(self.sessions)
         for i in range(len(lsm_val)):
-            writer.writerow(self.lsm_row(sessions_keys[i], lsm_val[i]))
+            writer.writerow(self.lsm_row(sessions_keys[i], lsm_val.iloc[i]))
 
     def lsm_row(self, key, values):
         ans = [self.dyad_num, key]

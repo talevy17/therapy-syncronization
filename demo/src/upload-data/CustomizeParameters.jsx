@@ -17,14 +17,15 @@ export default class CustomizeParameters extends Component {
       resolution: "BySession",
       eventSpeaker: "event_speaker",
       measures: [],
-      session: "session_number",
+      speakers: [],
+      transcription: "session_number",
       dyad: "dyad",
     };
   }
 
-  convertMeasuresToString = () => {
+  convertListToString = (list) => {
     let result = "";
-    this.state.measures.forEach((measure) => (result += measure + " "));
+    list.forEach((item) => (result += item + " "));
     return result;
   };
 
@@ -44,7 +45,7 @@ export default class CustomizeParameters extends Component {
         <TextField
           label="Measures"
           id="measuers"
-          defaultValue={this.convertMeasuresToString()}
+          defaultValue={this.convertListToString(this.state.measures)}
           margin="normal"
           onChange={(event) =>
             this.setState({ measures: event.target.value.split(" ") })
@@ -69,6 +70,15 @@ export default class CustomizeParameters extends Component {
           />
         </RadioGroup>
         <TextField
+          label="Speakers"
+          id="speakers"
+          defaultValue={this.convertListToString(this.state.speakers)}
+          margin="normal"
+          onChange={(event) =>
+            this.setState({ speakers: event.target.value.split(" ") })
+          }
+        />
+        <TextField
           label="Dyad Column"
           id="by-dyad"
           defaultValue={this.state.dyad}
@@ -81,7 +91,9 @@ export default class CustomizeParameters extends Component {
             id="by-session"
             defaultValue={this.state.session}
             margin="normal"
-            onChange={(event) => this.setState({ session: event.target.value })}
+            onChange={(event) =>
+              this.setState({ transcription: event.target.value })
+            }
           />
         )}
       </FormControl>
@@ -89,12 +101,20 @@ export default class CustomizeParameters extends Component {
   };
 
   onClose() {
-    const { eventSpeaker, measures, session, dyad, resolution } = this.state;
+    const {
+      eventSpeaker,
+      measures,
+      transcription,
+      dyad,
+      resolution,
+      speakers,
+    } = this.state;
     this.props.onClose({
       eventSpeaker,
       measures,
+      speakers,
       dyad,
-      session: resolution === "BySession" && session,
+      transcription: resolution === "BySession" && transcription,
     });
   }
 

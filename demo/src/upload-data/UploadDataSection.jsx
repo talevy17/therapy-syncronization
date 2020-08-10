@@ -19,6 +19,7 @@ export default class UploadDataSection extends Component {
       URLParams: {
         eventSpeaker: "event_speaker",
         measures: [],
+        speakers: [],
         session: "session_number",
         dyad: "dyad",
       },

@@ -1,7 +1,7 @@
 from algorithms.coordination import Coordination
 from algorithms.lsm_calculator import LSM
 import pandas as pd
-from params import NUM_OF_CHECK
+from algorithms.params import NUM_OF_CHECK
 
 
 class Session:
