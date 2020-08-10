@@ -20,10 +20,12 @@ def get_params(args):
     speakers = args.get("speakers")
     params = {'dyad': dyad,
               'transcription': transcription,
-              'speakers': speakers,
+              'speakers': speakers.split(','),
               'num_of_words': 'num_of_words'}
     if len(measures) == 0:
         measures = None
+    else:
+        measures = measures.split(',')
     return params, measures
 
 @app.route('/upload', methods=['POST'])
@@ -37,7 +39,7 @@ def file_upload():
 @app.route('/lsm-table/<filename>', methods=['GET'])
 def lsm_table(filename):
     params, measures = get_params(request.args)
-    print(params)
+    print(params["speakers"])
     file_name = controller(filename, params, measures, table=True, lsm=True)
     return redirect(url_for('download', filename=file_name))
 
