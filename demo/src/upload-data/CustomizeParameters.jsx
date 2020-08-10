@@ -51,6 +51,15 @@ export default class CustomizeParameters extends Component {
             this.setState({ measures: event.target.value.split(" ") })
           }
         />
+        <TextField
+          label="Speakers"
+          id="speakers"
+          defaultValue={this.convertListToString(this.state.speakers)}
+          margin="normal"
+          onChange={(event) =>
+            this.setState({ speakers: event.target.value.split(" ") })
+          }
+        />
         <RadioGroup
           name={"Conversation Resolution"}
           onChange={(event) =>
@@ -69,15 +78,6 @@ export default class CustomizeParameters extends Component {
             label={"By Dyad"}
           />
         </RadioGroup>
-        <TextField
-          label="Speakers"
-          id="speakers"
-          defaultValue={this.convertListToString(this.state.speakers)}
-          margin="normal"
-          onChange={(event) =>
-            this.setState({ speakers: event.target.value.split(" ") })
-          }
-        />
         <TextField
           label="Dyad Column"
           id="by-dyad"

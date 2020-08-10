@@ -12,6 +12,20 @@ app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 
+def get_params(args):
+    event_speaker = args.get("eventSpeaker")
+    measures = args.get("measures")
+    transcription = args.get("transcription")
+    dyad = args.get("dyad")
+    speakers = args.get("speakers")
+    params = {'dyad': dyad,
+              'transcription': transcription,
+              'speakers': speakers,
+              'num_of_words': 'num_of_words'}
+    if len(measures) == 0:
+        measures = None
+    return params, measures
+
 @app.route('/upload', methods=['POST'])
 def file_upload():
     file = request.files['file']
@@ -22,12 +36,9 @@ def file_upload():
 
 @app.route('/lsm-table/<filename>', methods=['GET'])
 def lsm_table(filename):
-    event_speaker = request.args.get("eventSpeaker")
-    measures = request.args.get("measures")
-    session = request.args.get("session")
-    dyad = request.args.get("dyad")
-    print(event_speaker)
-    file_name = controller(filename, TMP_PARAMS, table=True, lsm=True)
+    params, measures = get_params(request.args)
+    print(params)
+    file_name = controller(filename, params, measures, table=True, lsm=True)
     return redirect(url_for('download', filename=file_name))
 
 
