@@ -122,8 +122,9 @@ export default class CustomizeParameters extends Component {
         isOpen={this.props.isOpen}
         onClose={() => this.onClose()}
         title={"Data Parameters"}
-        modalBody={this.renderParametersForm}
-      />
+      >
+        {this.renderParametersForm()}
+      </SettingsModal>
     );
   }
 }

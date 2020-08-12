@@ -6,7 +6,7 @@ import closeIcon from "./closeIcon";
 import styles from "./modal.module.css";
 
 export default function SettingsModal(props) {
-  const { isOpen, modalBody, onClose, title } = props;
+  const { isOpen, children, onClose, title } = props;
   return (
     <Modal
       className={styles.modal_container}
@@ -21,7 +21,7 @@ export default function SettingsModal(props) {
           <Typography variant={"h3"} color={"primary"}>
             {title}
           </Typography>
-          {modalBody()}
+          {children}
         </Paper>
       </Paper>
     </Modal>
