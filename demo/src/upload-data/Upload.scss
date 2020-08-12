@@ -6,8 +6,8 @@
 
 .section {
   display: flex;
-  flex-flow: column nowrap;
-  justify-content: flex-start;
+  flex-flow: row wrap;
+  justify-content: center;
   align-items: center;
   padding: 20px;
   background-color: lightsalmon;

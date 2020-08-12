@@ -15,7 +15,7 @@ class Dyad:
         self.sessions = self.split_sessions()
 
     def split_sessions(self):
-        tr_groups = self.df[self.col['transcription']].unique()
+        tr_groups = self.df.iloc[self.col['transcription']].unique()
         # transcription_hard_key : session
         sessions = {}
         for tr in tr_groups:

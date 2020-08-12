@@ -119,29 +119,27 @@ export default class UploadDataSection extends Component {
     return (
       <Paper className={"container"} variant={"outlined"} square>
         <Paper className={"section"} variant={"elevation"} elevation={10}>
-          {this.state.isCustomizing ? (
-            <CustomizeParameters onClose={this.onParamsUpdate} />
-          ) : (
-            <>
-              <Upload
-                setFilename={this.setFilename}
-                startUploading={this.startUploading}
-              />
-              <Button
-                onClick={() => this.setState({ isCustomizing: true })}
-                variant="contained"
-                color="primary"
-                component="span"
-              >
-                Customize Parameters
-              </Button>
-            </>
-          )}
+          <Upload
+            setFilename={this.setFilename}
+            startUploading={this.startUploading}
+          />
+          <Button
+            onClick={() => this.setState({ isCustomizing: true })}
+            variant="contained"
+            color="primary"
+            component="span"
+          >
+            Customize Parameters
+          </Button>
         </Paper>
         <Paper className={"section"} variant={"elevation"} elevation={5}>
           {this.renderConfirmButtons()}
         </Paper>
         {this.onActionProccessing()}
+        <CustomizeParameters
+          onClose={this.onParamsUpdate}
+          isOpen={this.state.isCustomizing}
+        />
       </Paper>
     );
   }

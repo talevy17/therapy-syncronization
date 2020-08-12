@@ -31,7 +31,7 @@ export default class Upload extends Component {
 
   render() {
     return (
-      <Paper className={"section"} variant={"elevation"} elevation={10}>
+      <>
         <Button
           onClick={() => this.setState({ open: true })}
           variant="contained"
@@ -49,7 +49,7 @@ export default class Upload extends Component {
           acceptedFiles={[".csv", ".xlsx", ".xls", ".xlsm", ".xlsb"]}
           maxFileSize={500000000}
         />
-      </Paper>
+      </>
     );
   }
 }

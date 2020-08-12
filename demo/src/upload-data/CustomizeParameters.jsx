@@ -1,14 +1,14 @@
 import React, { Component } from "react";
 import {
-  Button,
   Paper,
   Radio,
   RadioGroup,
   FormControlLabel,
   FormControl,
-  FormLabel,
   TextField,
 } from "@material-ui/core";
+
+import { SettingsModal } from "../Components";
 
 export default class CustomizeParameters extends Component {
   constructor(props) {
@@ -32,7 +32,6 @@ export default class CustomizeParameters extends Component {
   renderParametersForm = () => {
     return (
       <FormControl>
-        <FormLabel>Data Parameters</FormLabel>
         <TextField
           label="Event Speaker"
           id="event-speaker"
@@ -120,17 +119,12 @@ export default class CustomizeParameters extends Component {
 
   render() {
     return (
-      <Paper>
-        {this.renderParametersForm()}
-        <Button
-          onClick={() => this.onClose()}
-          variant="contained"
-          color="primary"
-          component="span"
-        >
-          Save And Close
-        </Button>
-      </Paper>
+      <SettingsModal
+        isOpen={this.props.isOpen}
+        onClose={() => this.onClose()}
+        title={"Data Parameters"}
+        modalBody={this.renderParametersForm}
+      />
     );
   }
 }
