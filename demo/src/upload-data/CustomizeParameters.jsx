@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import {
-  Paper,
   Radio,
   RadioGroup,
   FormControlLabel,

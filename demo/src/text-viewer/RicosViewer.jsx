@@ -11,7 +11,7 @@ import { pluginLineSpacing } from "wix-rich-content-plugin-line-spacing/dist/mod
 import { pluginLink } from "wix-rich-content-plugin-link/dist/module.viewer";
 
 import { Paper } from "@material-ui/core";
-import "./RicosViewer.scss";
+import styles from "./RicosViewer.module.scss";
 import "wix-rich-content-plugin-divider/dist/styles.min.css";
 import "wix-rich-content-plugin-image/dist/styles.min.css";
 import "wix-rich-content-plugin-link/dist/styles.min.css";
@@ -30,7 +30,12 @@ const plugins = [
 const Viewer = ({ contentState, palette, isMobile, addAnchors }) => {
   const theme = palette ? { theme: "Palette", palette } : { theme: "Default" };
   return (
-    <Paper className={"viewer"} variant={"elevation"} square elevation={10}>
+    <Paper
+      className={styles.viewer}
+      variant={"elevation"}
+      square
+      elevation={10}
+    >
       <RicosViewer
         content={contentState}
         plugins={plugins}

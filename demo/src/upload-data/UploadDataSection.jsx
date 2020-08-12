@@ -8,7 +8,7 @@ import {
 
 import Upload from "./Upload";
 import CustomizeParameters from "./CustomizeParameters";
-import "./Upload.scss";
+import styles from "./Upload.module.css";
 
 export default class UploadDataSection extends Component {
   constructor(props) {
@@ -97,8 +97,8 @@ export default class UploadDataSection extends Component {
 
   onActionProccessing = () => {
     return this.state && this.state.proccessing ? (
-      <div className={"progress-container"}>
-        <CircularProgress className={"progress-loader"} />
+      <div className={styles.progress_container}>
+        <CircularProgress className={styles.progress_loader} />
       </div>
     ) : null;
   };
@@ -117,8 +117,8 @@ export default class UploadDataSection extends Component {
 
   render() {
     return (
-      <Paper className={"container"} variant={"outlined"} square>
-        <Paper className={"section"} variant={"elevation"} elevation={10}>
+      <Paper className={styles.container} variant={"outlined"} square>
+        <Paper className={styles.section} variant={"elevation"} elevation={10}>
           <Upload
             setFilename={this.setFilename}
             startUploading={this.startUploading}
@@ -132,7 +132,7 @@ export default class UploadDataSection extends Component {
             Customize Parameters
           </Button>
         </Paper>
-        <Paper className={"section"} variant={"elevation"} elevation={5}>
+        <Paper className={styles.section} variant={"elevation"} elevation={5}>
           {this.renderConfirmButtons()}
         </Paper>
         {this.onActionProccessing()}

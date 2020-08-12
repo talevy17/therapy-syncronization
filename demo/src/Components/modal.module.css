@@ -1,18 +1,18 @@
-.close-button {
+.close_button {
   align-self: flex-start;
   left: 0px;
   margin: 5px;
 }
 
-.modal-container {
+.modal_container {
   display: flex;
   flex-flow: row wrap;
   justify-content: center;
   align-items: center;
-  background-color: rgba($color: #000000, $alpha: 0.6);
+  background-color: rgba(black, black, black, 0.6);
 }
 
-.settings-container {
+.settings_container {
   display: flex;
   flex-flow: column wrap;
   justify-content: center;

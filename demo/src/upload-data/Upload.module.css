@@ -13,7 +13,7 @@
   background-color: lightsalmon;
 }
 
-.progress-container {
+.progress_container {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -22,6 +22,6 @@
   margin: auto;
 }
 
-.progress-loader {
+.progress_loader {
   margin: auto;
 }

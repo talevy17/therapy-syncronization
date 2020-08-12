@@ -1,29 +1,23 @@
-import React, { Component } from "react";
-import {
-  Modal,
-  Typography,
-  IconButton,
-  Button,
-  Paper,
-} from "@material-ui/core";
+import React from "react";
+import { Modal, Typography, IconButton, Paper } from "@material-ui/core";
 
 import closeIcon from "./closeIcon";
 
-import "./modal.scss";
+import styles from "./modal.module.css";
 
 export default function SettingsModal(props) {
   const { isOpen, modalBody, onClose, title } = props;
   return (
     <Modal
-      className={"modal-container"}
+      className={styles.modal_container}
       open={isOpen}
       onClose={() => onClose()}
     >
       <Paper>
-        <IconButton className={"close-button"} onClick={() => onClose()}>
+        <IconButton className={styles.close_button} onClick={() => onClose()}>
           {closeIcon()}
         </IconButton>
-        <Paper className={"settings-container"}>
+        <Paper className={styles.settings_container}>
           <Typography variant={"h3"} color={"primary"}>
             {title}
           </Typography>

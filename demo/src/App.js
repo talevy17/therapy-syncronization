@@ -1,11 +1,11 @@
 import React, { PureComponent } from "react";
 import { UploadDataSection } from "./upload-data";
-import TabPanel from "./TabPanel";
+import { TabPanel } from "./Components";
 import { RicosViewer, intro, algorithms, results } from "./text-viewer";
 import AppBar from "@material-ui/core/AppBar";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
-import "./App.css";
+import styles from "./App.module.css";
 
 class App extends PureComponent {
   constructor(props) {
@@ -23,7 +23,7 @@ class App extends PureComponent {
   render() {
     const { tabIndex } = this.state;
     return (
-      <div className={"App"}>
+      <div className={styles.App}>
         <AppBar position="static">
           <Tabs
             value={tabIndex}

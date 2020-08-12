@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import { Button, CircularProgress, Paper } from "@material-ui/core";
+import { Button, CircularProgress } from "@material-ui/core";
 import { DropzoneDialog } from "material-ui-dropzone";
-import "./Upload.scss";
+import styles from "./Upload.module.css";
 
 export default class Upload extends Component {
   constructor(props) {
@@ -23,8 +23,8 @@ export default class Upload extends Component {
 
   onActionProccessing = () => {
     return this.state && this.state.proccessing ? (
-      <div className={"progress-container"}>
-        <CircularProgress className={"progress-loader"} />
+      <div className={styles.progress_container}>
+        <CircularProgress className={styles.progress_loader} />
       </div>
     ) : null;
   };
