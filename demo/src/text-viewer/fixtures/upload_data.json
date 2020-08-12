@@ -1,0 +1,54 @@
+{
+  "blocks": [
+    {
+      "key": "5kcft",
+      "text": "UPLOAD YOUR OWN DATA",
+      "type": "header-two",
+      "depth": 0,
+      "inlineStyleRanges": [],
+      "entityRanges": [],
+      "data": {
+        "textAlignment": "center"
+      }
+    },
+    {
+      "key": "f1gtt",
+      "text": " ",
+      "type": "atomic",
+      "depth": 0,
+      "inlineStyleRanges": [],
+      "entityRanges": [
+        {
+          "offset": 0,
+          "length": 1,
+          "key": 0
+        }
+      ],
+      "data": {}
+    },
+    {
+      "key": "235dv",
+      "text": "TODO - documentation and explanation.",
+      "type": "unstyled",
+      "depth": 0,
+      "inlineStyleRanges": [],
+      "entityRanges": [],
+      "data": {}
+    }
+  ],
+  "entityMap": {
+    "0": {
+      "type": "wix-draft-plugin-divider",
+      "mutability": "IMMUTABLE",
+      "data": {
+        "type": "single",
+        "config": {
+          "size": "medium",
+          "alignment": "center",
+          "textWrap": "nowrap"
+        }
+      }
+    }
+  },
+  "VERSION": "7.16.3"
+}
