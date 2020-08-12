@@ -28,10 +28,400 @@
     },
     {
       "key": "235dv",
-      "text": "TODO - documentation and explanation.",
+      "text": "In this section you may upload your own data to use the algorithms.",
       "type": "unstyled",
       "depth": 0,
       "inlineStyleRanges": [],
+      "entityRanges": [],
+      "data": {}
+    },
+    {
+      "key": "9ojfq",
+      "text": "The input should consist of an event speaker (whose talking in the transcription) column a dyad column, a session (or transcription) column, a list of speakers (at most two) and the measures (or column tags), and of course a transcription key column.",
+      "type": "unstyled",
+      "depth": 0,
+      "inlineStyleRanges": [],
+      "entityRanges": [],
+      "data": {}
+    },
+    {
+      "key": "d02io",
+      "text": "The default names of the columns are:",
+      "type": "unstyled",
+      "depth": 0,
+      "inlineStyleRanges": [],
+      "entityRanges": [],
+      "data": {}
+    },
+    {
+      "key": "a4mif",
+      "text": "dyad: dyad_n",
+      "type": "unordered-list-item",
+      "depth": 0,
+      "inlineStyleRanges": [],
+      "entityRanges": [],
+      "data": {}
+    },
+    {
+      "key": "76s82",
+      "text": "session: transcription_n",
+      "type": "unordered-list-item",
+      "depth": 0,
+      "inlineStyleRanges": [],
+      "entityRanges": [],
+      "data": {}
+    },
+    {
+      "key": "3ehrn",
+      "text": "measures: POS tags categories:",
+      "type": "unordered-list-item",
+      "depth": 0,
+      "inlineStyleRanges": [],
+      "entityRanges": [],
+      "data": {}
+    },
+    {
+      "key": "eoj5h",
+      "text": "'adverb_pos_tag'",
+      "type": "unordered-list-item",
+      "depth": 1,
+      "inlineStyleRanges": [
+        {
+          "offset": 0,
+          "length": 16,
+          "style": "{\"FG\":\"#ce9178\"}"
+        }
+      ],
+      "entityRanges": [],
+      "data": {}
+    },
+    {
+      "key": "3adcg",
+      "text": " 'at_pos_tag'",
+      "type": "unordered-list-item",
+      "depth": 1,
+      "inlineStyleRanges": [
+        {
+          "offset": 1,
+          "length": 12,
+          "style": "{\"FG\":\"#ce9178\"}"
+        }
+      ],
+      "entityRanges": [],
+      "data": {}
+    },
+    {
+      "key": "6vddu",
+      "text": " 'cc_pos_tag'",
+      "type": "unordered-list-item",
+      "depth": 1,
+      "inlineStyleRanges": [
+        {
+          "offset": 1,
+          "length": 12,
+          "style": "{\"FG\":\"#ce9178\"}"
+        }
+      ],
+      "entityRanges": [],
+      "data": {}
+    },
+    {
+      "key": "9dk2h",
+      "text": "'conj_pos_tag'",
+      "type": "unordered-list-item",
+      "depth": 1,
+      "inlineStyleRanges": [
+        {
+          "offset": 0,
+          "length": 14,
+          "style": "{\"FG\":\"#ce9178\"}"
+        }
+      ],
+      "entityRanges": [],
+      "data": {}
+    },
+    {
+      "key": "dv7o6",
+      "text": " 'cop_pos_tag'",
+      "type": "unordered-list-item",
+      "depth": 1,
+      "inlineStyleRanges": [
+        {
+          "offset": 1,
+          "length": 13,
+          "style": "{\"FG\":\"#ce9178\"}"
+        }
+      ],
+      "entityRanges": [],
+      "data": {}
+    },
+    {
+      "key": "3r8nm",
+      "text": " 'def_pos_tag'",
+      "type": "unordered-list-item",
+      "depth": 1,
+      "inlineStyleRanges": [
+        {
+          "offset": 1,
+          "length": 13,
+          "style": "{\"FG\":\"#ce9178\"}"
+        }
+      ],
+      "entityRanges": [],
+      "data": {}
+    },
+    {
+      "key": "1d1a4",
+      "text": " 'dt_pos_tag'",
+      "type": "unordered-list-item",
+      "depth": 1,
+      "inlineStyleRanges": [
+        {
+          "offset": 1,
+          "length": 12,
+          "style": "{\"FG\":\"#ce9178\"}"
+        }
+      ],
+      "entityRanges": [],
+      "data": {}
+    },
+    {
+      "key": "25kpl",
+      "text": " 'dtt_pos_tag'",
+      "type": "unordered-list-item",
+      "depth": 1,
+      "inlineStyleRanges": [
+        {
+          "offset": 1,
+          "length": 13,
+          "style": "{\"FG\":\"#ce9178\"}"
+        }
+      ],
+      "entityRanges": [],
+      "data": {}
+    },
+    {
+      "key": "boava",
+      "text": " 'ex_pos_tag'",
+      "type": "unordered-list-item",
+      "depth": 1,
+      "inlineStyleRanges": [
+        {
+          "offset": 1,
+          "length": 12,
+          "style": "{\"FG\":\"#ce9178\"}"
+        }
+      ],
+      "entityRanges": [],
+      "data": {}
+    },
+    {
+      "key": "6qtgu",
+      "text": " 'in_pos_tag'",
+      "type": "unordered-list-item",
+      "depth": 1,
+      "inlineStyleRanges": [
+        {
+          "offset": 1,
+          "length": 12,
+          "style": "{\"FG\":\"#ce9178\"}"
+        }
+      ],
+      "entityRanges": [],
+      "data": {}
+    },
+    {
+      "key": "21ges",
+      "text": " 'md_pos_tag'",
+      "type": "unordered-list-item",
+      "depth": 1,
+      "inlineStyleRanges": [
+        {
+          "offset": 1,
+          "length": 12,
+          "style": "{\"FG\":\"#ce9178\"}"
+        }
+      ],
+      "entityRanges": [],
+      "data": {}
+    },
+    {
+      "key": "bm2dl",
+      "text": " 'pos_pos_tag'",
+      "type": "unordered-list-item",
+      "depth": 1,
+      "inlineStyleRanges": [
+        {
+          "offset": 1,
+          "length": 13,
+          "style": "{\"FG\":\"#ce9178\"}"
+        }
+      ],
+      "entityRanges": [],
+      "data": {}
+    },
+    {
+      "key": "79t1o",
+      "text": " 'preposition_pos_tag'",
+      "type": "unordered-list-item",
+      "depth": 1,
+      "inlineStyleRanges": [
+        {
+          "offset": 1,
+          "length": 21,
+          "style": "{\"FG\":\"#ce9178\"}"
+        }
+      ],
+      "entityRanges": [],
+      "data": {}
+    },
+    {
+      "key": "80u2o",
+      "text": " 'prp_pos_tag'",
+      "type": "unordered-list-item",
+      "depth": 1,
+      "inlineStyleRanges": [
+        {
+          "offset": 1,
+          "length": 13,
+          "style": "{\"FG\":\"#ce9178\"}"
+        }
+      ],
+      "entityRanges": [],
+      "data": {}
+    },
+    {
+      "key": "bbd2g",
+      "text": " 'qw_pos_tag'",
+      "type": "unordered-list-item",
+      "depth": 1,
+      "inlineStyleRanges": [
+        {
+          "offset": 1,
+          "length": 12,
+          "style": "{\"FG\":\"#ce9178\"}"
+        }
+      ],
+      "entityRanges": [],
+      "data": {}
+    },
+    {
+      "key": "36kk4",
+      "text": " 'rb_pos_tag'",
+      "type": "unordered-list-item",
+      "depth": 1,
+      "inlineStyleRanges": [
+        {
+          "offset": 1,
+          "length": 12,
+          "style": "{\"FG\":\"#ce9178\"}"
+        }
+      ],
+      "entityRanges": [],
+      "data": {}
+    },
+    {
+      "key": "7f1a1",
+      "text": " 'rel_pos_tag'",
+      "type": "unordered-list-item",
+      "depth": 1,
+      "inlineStyleRanges": [
+        {
+          "offset": 1,
+          "length": 13,
+          "style": "{\"FG\":\"#ce9178\"}"
+        }
+      ],
+      "entityRanges": [],
+      "data": {}
+    },
+    {
+      "key": "d1lh6",
+      "text": " 's_prn_pos_tag'",
+      "type": "unordered-list-item",
+      "depth": 1,
+      "inlineStyleRanges": [
+        {
+          "offset": 1,
+          "length": 15,
+          "style": "{\"FG\":\"#ce9178\"}"
+        }
+      ],
+      "entityRanges": [],
+      "data": {}
+    },
+    {
+      "key": "14g8q",
+      "text": " 'temp_pos_tag'",
+      "type": "unordered-list-item",
+      "depth": 1,
+      "inlineStyleRanges": [
+        {
+          "offset": 1,
+          "length": 14,
+          "style": "{\"FG\":\"#ce9178\"}"
+        }
+      ],
+      "entityRanges": [],
+      "data": {}
+    },
+    {
+      "key": "183k8",
+      "text": "speakers: Client, Therapist",
+      "type": "unordered-list-item",
+      "depth": 0,
+      "inlineStyleRanges": [
+        {
+          "offset": 0,
+          "length": 27,
+          "style": "{\"FG\":\"color2\"}"
+        }
+      ],
+      "entityRanges": [],
+      "data": {}
+    },
+    {
+      "key": "c8m75",
+      "text": "transcription key: transcription_hard_key",
+      "type": "unordered-list-item",
+      "depth": 0,
+      "inlineStyleRanges": [
+        {
+          "offset": 0,
+          "length": 41,
+          "style": "{\"FG\":\"color2\"}"
+        }
+      ],
+      "entityRanges": [],
+      "data": {}
+    },
+    {
+      "key": "9eqbr",
+      "text": "The column names and measures are customisable from the customise parameters button.",
+      "type": "unstyled",
+      "depth": 0,
+      "inlineStyleRanges": [
+        {
+          "offset": 0,
+          "length": 84,
+          "style": "{\"FG\":\"color2\"}"
+        }
+      ],
+      "entityRanges": [],
+      "data": {}
+    },
+    {
+      "key": "1s00u",
+      "text": "The results will be downloaded automatically once the server returns a result.",
+      "type": "unstyled",
+      "depth": 0,
+      "inlineStyleRanges": [
+        {
+          "offset": 0,
+          "length": 78,
+          "style": "{\"FG\":\"color2\"}"
+        }
+      ],
       "entityRanges": [],
       "data": {}
     }

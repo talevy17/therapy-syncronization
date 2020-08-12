@@ -4,6 +4,7 @@ import {
   Button,
   CircularProgress,
   Paper,
+  Typography,
 } from "@material-ui/core";
 
 import Upload from "./Upload";
@@ -56,7 +57,7 @@ export default class UploadDataSection extends Component {
           component="span"
           disabled={disabled}
         >
-          Export lsm to CSV
+          lsm to CSV
         </Button>
         <Button
           onClick={() =>
@@ -67,7 +68,7 @@ export default class UploadDataSection extends Component {
           component="span"
           disabled={disabled}
         >
-          Export coordination to csv
+          coordination to csv
         </Button>
         <Button
           onClick={() =>
@@ -78,7 +79,7 @@ export default class UploadDataSection extends Component {
           component="span"
           disabled={disabled}
         >
-          Export lsm to graphs
+          lsm to graphs
         </Button>
         <Button
           onClick={() =>
@@ -89,7 +90,7 @@ export default class UploadDataSection extends Component {
           component="span"
           disabled={disabled}
         >
-          Export coordination to graphs
+          coordination to graphs
         </Button>
       </ButtonGroup>
     );
@@ -129,10 +130,13 @@ export default class UploadDataSection extends Component {
             color="primary"
             component="span"
           >
-            Customize Parameters
+            Customise Parameters
           </Button>
         </Paper>
         <Paper className={styles.section} variant={"elevation"} elevation={5}>
+          <Typography variant={"h6"} color={"primary"}>
+            Export Proccessed Data
+          </Typography>
           {this.renderConfirmButtons()}
         </Paper>
         {this.onActionProccessing()}

@@ -1,7 +1,7 @@
 import React, { PureComponent } from "react";
-import { UploadDataSection } from "./upload-data";
 import { TabPanel } from "./Components";
-import { RicosViewer, intro, algorithms, results, upload } from "./text-viewer";
+import { RicosViewer, intro, algorithms, results } from "./text-viewer";
+import UploadDataTab from "./UploadDataTab";
 import AppBar from "@material-ui/core/AppBar";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
@@ -49,10 +49,7 @@ class App extends PureComponent {
           <RicosViewer contentState={results} />
         </TabPanel>
         <TabPanel value={tabIndex} index={3}>
-          <>
-            <RicosViewer contentState={upload} />
-            <UploadDataSection />
-          </>
+          <UploadDataTab />
         </TabPanel>
       </div>
     );
