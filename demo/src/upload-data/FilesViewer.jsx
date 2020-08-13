@@ -18,7 +18,6 @@ export function createFileContent(url, filename) {
 }
 
 export function FilesViewer(props) {
-  console.log(props.filesContent);
   return (
     <div className={styles.container}>
       {props.filesContent.map((content, index) => {

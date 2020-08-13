@@ -111,7 +111,6 @@ export default class UploadDataSection extends Component {
       serverURL + "/files/" + filename,
       filename
     );
-    console.log(fileContent);
     this.setState({
       proccessing: false,
       filename,
