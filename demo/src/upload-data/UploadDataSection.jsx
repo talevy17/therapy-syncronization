@@ -17,13 +17,7 @@ export default class UploadDataSection extends Component {
     this.state = {
       proccessing: false,
       isCustomizing: false,
-      URLParams: {
-        eventSpeaker: "event_speaker",
-        measures: [],
-        speakers: [],
-        session: "session_number",
-        dyad: "dyad",
-      },
+      URLParams: {},
     };
   }
 

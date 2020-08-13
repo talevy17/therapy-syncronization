@@ -14,11 +14,11 @@ export default class CustomizeParameters extends Component {
     super(props);
     this.state = {
       resolution: "BySession",
-      eventSpeaker: "event_speaker",
+      eventSpeaker: "",
       measures: [],
       speakers: [],
-      transcription: "session_number",
-      dyad: "dyad",
+      transcription: "",
+      dyad: "",
     };
   }
 
