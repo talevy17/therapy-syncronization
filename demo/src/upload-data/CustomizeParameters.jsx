@@ -19,6 +19,8 @@ export default class CustomizeParameters extends Component {
       speakers: [],
       transcription: "",
       dyad: "",
+      key: "",
+      numOfWords: null,
     };
   }
 
@@ -31,6 +33,13 @@ export default class CustomizeParameters extends Component {
   renderParametersForm = () => {
     return (
       <FormControl>
+        <TextField
+          label="Transcription Key"
+          id="transcription-hard-key"
+          defaultValue={this.state.key}
+          margin="normal"
+          onChange={(event) => this.setState({ key: event.target.value })}
+        />
         <TextField
           label="Event Speaker"
           id="event-speaker"
@@ -56,6 +65,15 @@ export default class CustomizeParameters extends Component {
           margin="normal"
           onChange={(event) =>
             this.setState({ speakers: event.target.value.split(" ") })
+          }
+        />
+        <TextField
+          label="Number of words"
+          id="num-of-words"
+          defaultValue={this.state.numOfWords}
+          margin="normal"
+          onChange={(event) =>
+            this.setState({ numOfWords: event.target.value })
           }
         />
         <RadioGroup
@@ -106,6 +124,8 @@ export default class CustomizeParameters extends Component {
       dyad,
       resolution,
       speakers,
+      key,
+      numOfWords,
     } = this.state;
     this.props.onClose({
       eventSpeaker,
@@ -113,6 +133,8 @@ export default class CustomizeParameters extends Component {
       speakers,
       dyad,
       transcription: resolution === "BySession" && transcription,
+      key,
+      numOfWords,
     });
   }
 

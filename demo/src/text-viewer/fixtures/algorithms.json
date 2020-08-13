@@ -172,7 +172,18 @@
       "text": "In our work we evaluate the LSM of a dyad by each session and overall.",
       "type": "unstyled",
       "depth": 0,
-      "inlineStyleRanges": [],
+      "inlineStyleRanges": [
+        {
+          "offset": 23,
+          "length": 1,
+          "style": "{\"FG\":\"#c32f2f\"}"
+        },
+        {
+          "offset": 24,
+          "length": 3,
+          "style": "{\"FG\":\"color2\"}"
+        }
+      ],
       "entityRanges": [],
       "data": {}
     },
@@ -223,16 +234,323 @@
     },
     {
       "key": "1gp4j",
-      "text": "ECHOS OF POWER - TBD.",
+      "text": "Coordination and Influence - Power and influence are interesting aspects of interaction between parties.",
       "type": "unstyled",
       "depth": 0,
       "inlineStyleRanges": [
         {
           "offset": 0,
-          "length": 14,
+          "length": 26,
           "style": "BOLD"
         }
       ],
+      "entityRanges": [],
+      "data": {}
+    },
+    {
+      "key": "a4ffl",
+      "text": "In this section we implemented a method of assessing the influence of one target on one speaker in sense of language style, meaning a measure that exhibits the level of influence one person have had over another in a conversation.",
+      "type": "unstyled",
+      "depth": 0,
+      "inlineStyleRanges": [],
+      "entityRanges": [],
+      "data": {}
+    },
+    {
+      "key": "28kg0",
+      "text": "This measure could have psychological implications when the nature of the data is transcriptions between Clients and Therapists and could be used to check rather influence and coordination in speech has an effect on therapy sessions.",
+      "type": "unstyled",
+      "depth": 0,
+      "inlineStyleRanges": [],
+      "entityRanges": [],
+      "data": {}
+    },
+    {
+      "key": "8ebo8",
+      "text": "the method is as follows: given a group of words M (could be arranged by POS tags for example), a target T and a speaker S we say that the coordination level or influence of T over S with regard to the group M in a single exchange (meaning a comment made by T and a reply by S) is the probability he would exhibit M given that T has used M before in the exchange minus the probability that S would exhibit words from group M in a sentence.",
+      "type": "unstyled",
+      "depth": 0,
+      "inlineStyleRanges": [
+        {
+          "offset": 49,
+          "length": 1,
+          "style": "BOLD"
+        },
+        {
+          "offset": 105,
+          "length": 2,
+          "style": "BOLD"
+        },
+        {
+          "offset": 120,
+          "length": 3,
+          "style": "BOLD"
+        },
+        {
+          "offset": 173,
+          "length": 3,
+          "style": "BOLD"
+        },
+        {
+          "offset": 180,
+          "length": 3,
+          "style": "BOLD"
+        },
+        {
+          "offset": 207,
+          "length": 3,
+          "style": "BOLD"
+        },
+        {
+          "offset": 258,
+          "length": 1,
+          "style": "BOLD"
+        },
+        {
+          "offset": 275,
+          "length": 1,
+          "style": "BOLD"
+        },
+        {
+          "offset": 277,
+          "length": 1,
+          "style": "BOLD"
+        },
+        {
+          "offset": 314,
+          "length": 1,
+          "style": "BOLD"
+        },
+        {
+          "offset": 327,
+          "length": 1,
+          "style": "BOLD"
+        },
+        {
+          "offset": 338,
+          "length": 1,
+          "style": "BOLD"
+        },
+        {
+          "offset": 390,
+          "length": 1,
+          "style": "BOLD"
+        },
+        {
+          "offset": 423,
+          "length": 1,
+          "style": "BOLD"
+        },
+        {
+          "offset": 49,
+          "length": 1,
+          "style": "{\"FG\":\"#c32f2f\"}"
+        },
+        {
+          "offset": 105,
+          "length": 2,
+          "style": "{\"FG\":\"#c32f2f\"}"
+        },
+        {
+          "offset": 120,
+          "length": 3,
+          "style": "{\"FG\":\"#c32f2f\"}"
+        },
+        {
+          "offset": 173,
+          "length": 3,
+          "style": "{\"FG\":\"#c32f2f\"}"
+        },
+        {
+          "offset": 180,
+          "length": 3,
+          "style": "{\"FG\":\"#c32f2f\"}"
+        },
+        {
+          "offset": 207,
+          "length": 3,
+          "style": "{\"FG\":\"#c32f2f\"}"
+        },
+        {
+          "offset": 258,
+          "length": 1,
+          "style": "{\"FG\":\"#c32f2f\"}"
+        },
+        {
+          "offset": 275,
+          "length": 1,
+          "style": "{\"FG\":\"#c32f2f\"}"
+        },
+        {
+          "offset": 277,
+          "length": 1,
+          "style": "{\"FG\":\"#c32f2f\"}"
+        },
+        {
+          "offset": 314,
+          "length": 1,
+          "style": "{\"FG\":\"#c32f2f\"}"
+        },
+        {
+          "offset": 327,
+          "length": 1,
+          "style": "{\"FG\":\"#c32f2f\"}"
+        },
+        {
+          "offset": 338,
+          "length": 1,
+          "style": "{\"FG\":\"#c32f2f\"}"
+        },
+        {
+          "offset": 390,
+          "length": 1,
+          "style": "{\"FG\":\"#c32f2f\"}"
+        },
+        {
+          "offset": 423,
+          "length": 1,
+          "style": "{\"FG\":\"#c32f2f\"}"
+        },
+        {
+          "offset": 107,
+          "length": 13,
+          "style": "{\"FG\":\"color2\"}"
+        },
+        {
+          "offset": 123,
+          "length": 50,
+          "style": "{\"FG\":\"color2\"}"
+        },
+        {
+          "offset": 176,
+          "length": 4,
+          "style": "{\"FG\":\"color2\"}"
+        },
+        {
+          "offset": 183,
+          "length": 24,
+          "style": "{\"FG\":\"color2\"}"
+        },
+        {
+          "offset": 210,
+          "length": 48,
+          "style": "{\"FG\":\"color2\"}"
+        },
+        {
+          "offset": 259,
+          "length": 16,
+          "style": "{\"FG\":\"color2\"}"
+        },
+        {
+          "offset": 276,
+          "length": 1,
+          "style": "{\"FG\":\"color2\"}"
+        },
+        {
+          "offset": 278,
+          "length": 36,
+          "style": "{\"FG\":\"color2\"}"
+        },
+        {
+          "offset": 315,
+          "length": 12,
+          "style": "{\"FG\":\"color2\"}"
+        },
+        {
+          "offset": 328,
+          "length": 10,
+          "style": "{\"FG\":\"color2\"}"
+        },
+        {
+          "offset": 339,
+          "length": 51,
+          "style": "{\"FG\":\"color2\"}"
+        },
+        {
+          "offset": 391,
+          "length": 32,
+          "style": "{\"FG\":\"color2\"}"
+        },
+        {
+          "offset": 424,
+          "length": 15,
+          "style": "{\"FG\":\"color2\"}"
+        }
+      ],
+      "entityRanges": [],
+      "data": {}
+    },
+    {
+      "key": "6v6v8",
+      "text": "The general coordination over the group M is the average of all of the exchanges and the overall measure of a session is averaging over all the given groups of words.",
+      "type": "unstyled",
+      "depth": 0,
+      "inlineStyleRanges": [
+        {
+          "offset": 0,
+          "length": 40,
+          "style": "{\"FG\":\"color2\"}"
+        },
+        {
+          "offset": 41,
+          "length": 125,
+          "style": "{\"FG\":\"color2\"}"
+        },
+        {
+          "offset": 40,
+          "length": 1,
+          "style": "BOLD"
+        },
+        {
+          "offset": 40,
+          "length": 1,
+          "style": "{\"FG\":\"#c32f2f\"}"
+        }
+      ],
+      "entityRanges": [],
+      "data": {}
+    },
+    {
+      "key": "dbrrr",
+      "text": "Our implementation is based on the paper Echoes of Power.",
+      "type": "unstyled",
+      "depth": 0,
+      "inlineStyleRanges": [
+        {
+          "offset": 0,
+          "length": 41,
+          "style": "{\"FG\":\"color2\"}"
+        },
+        {
+          "offset": 41,
+          "length": 15,
+          "style": "UNDERLINE"
+        }
+      ],
+      "entityRanges": [
+        {
+          "offset": 41,
+          "length": 15,
+          "key": 3
+        }
+      ],
+      "data": {}
+    },
+    {
+      "key": "1bn1",
+      "text": "",
+      "type": "unstyled",
+      "depth": 0,
+      "inlineStyleRanges": [],
+      "entityRanges": [],
+      "data": {}
+    },
+    {
+      "key": "e1obs",
+      "text": "*** Note that there are a few methods to aggregate the calculated measure over a session since negative values are possible (implying there is no connection at all in a single exchange), see the paper for more info.",
+      "type": "unstyled",
+      "depth": 0,
+      "inlineStyleRanges": [],
       "entityRanges": [],
       "data": {}
     }
@@ -270,7 +588,16 @@
           "textWrap": "nowrap"
         }
       }
+    },
+    "3": {
+      "type": "LINK",
+      "mutability": "MUTABLE",
+      "data": {
+        "url": "https://www.cs.cornell.edu/~cristian/Echoes_of_power_files/echoes_of_power.pdf",
+        "target": "_blank",
+        "rel": "noopener"
+      }
     }
   },
-  "VERSION": "7.6.1"
+  "VERSION": "7.16.2"
 }

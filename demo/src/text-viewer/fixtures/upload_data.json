@@ -55,7 +55,7 @@
     },
     {
       "key": "a4mif",
-      "text": "dyad: dyad_n",
+      "text": "dyad: dyad_n (dyad index)",
       "type": "unordered-list-item",
       "depth": 0,
       "inlineStyleRanges": [],
@@ -64,7 +64,7 @@
     },
     {
       "key": "76s82",
-      "text": "session: transcription_n",
+      "text": "session: transcription_n (transcription index)",
       "type": "unordered-list-item",
       "depth": 0,
       "inlineStyleRanges": [],
@@ -382,13 +382,28 @@
     },
     {
       "key": "c8m75",
-      "text": "transcription key: transcription_hard_key",
+      "text": "transcription key: transcription_hard_key (unique key)",
       "type": "unordered-list-item",
       "depth": 0,
       "inlineStyleRanges": [
         {
           "offset": 0,
-          "length": 41,
+          "length": 54,
+          "style": "{\"FG\":\"color2\"}"
+        }
+      ],
+      "entityRanges": [],
+      "data": {}
+    },
+    {
+      "key": "5vko0",
+      "text": "number of words: num_of_words (number of words in the current sentence).",
+      "type": "unordered-list-item",
+      "depth": 0,
+      "inlineStyleRanges": [
+        {
+          "offset": 0,
+          "length": 72,
           "style": "{\"FG\":\"color2\"}"
         }
       ],
@@ -440,5 +455,5 @@
       }
     }
   },
-  "VERSION": "7.16.3"
+  "VERSION": "7.16.4"
 }
