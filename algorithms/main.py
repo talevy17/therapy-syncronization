@@ -25,8 +25,6 @@ def plot_coordination(df, col, directory):
     for d in dyad_groups:
         dyad_obj = Dyad(d, col, df.loc[df[col['dyad']] == d])
         dyad_obj.plot_coordination_graph(directory)
-        break
-    # coor_all_dyad_graph(c_val, ['speaker', 'target'], POS_TAG, pt_labels, directory)
 
 
 def create_tables(df, col, file_name, att, lsm=False):
@@ -92,4 +90,5 @@ def controller(file_name, params=None, measures=None, table=False, graphs=False,
 
 
 if __name__ == '__main__':
-    print(controller('MBM_camouflage_AllWithSBS.csv', TMP_PARAMS, lsm=False, graphs=True))
+    controller('MBM_camouflage_AllWithSBS.csv', params=TMP_PARAMS, measures=POS_TAG,
+               table=False, graphs=True, lsm=True)
