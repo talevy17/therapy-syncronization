@@ -3,6 +3,7 @@ import { RicosViewer } from "ricos-viewer";
 import "ricos-viewer/dist/styles.min.css";
 import { pluginDivider } from "wix-rich-content-plugin-divider/dist/module.viewer";
 import { pluginImage } from "wix-rich-content-plugin-image/dist/module.viewer";
+import { pluginFileUpload } from "wix-rich-content-plugin-file-upload/dist/module.viewer";
 import {
   pluginTextColor,
   pluginTextHighlight,
@@ -17,6 +18,7 @@ import "wix-rich-content-plugin-image/dist/styles.min.css";
 import "wix-rich-content-plugin-link/dist/styles.min.css";
 import "wix-rich-content-plugin-line-spacing/dist/styles.min.css";
 import "wix-rich-content-plugin-text-color/dist/styles.min.css";
+import "wix-rich-content-plugin-file-upload/dist/styles.min.css";
 
 const plugins = [
   pluginLink(),
@@ -25,6 +27,7 @@ const plugins = [
   pluginLineSpacing(),
   pluginTextColor(),
   pluginTextHighlight(),
+  pluginFileUpload(),
 ];
 
 const Viewer = ({ contentState, palette, isMobile, addAnchors }) => {

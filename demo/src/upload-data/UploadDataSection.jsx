@@ -9,7 +9,10 @@ import {
 
 import Upload from "./Upload";
 import CustomizeParameters from "./CustomizeParameters";
+import { FilesViewer, createFileContent } from "./FilesViewer";
 import styles from "./Upload.module.css";
+
+const serverURL = "http://localhost:5000";
 
 export default class UploadDataSection extends Component {
   constructor(props) {
@@ -18,12 +21,13 @@ export default class UploadDataSection extends Component {
       proccessing: false,
       isCustomizing: false,
       URLParams: {},
+      filesContent: [],
     };
   }
 
   onActionChosen = (path) => {
     const { URLParams } = this.state;
-    let url = new URL("http://localhost:5000" + path);
+    let url = new URL(serverURL + path);
     Object.keys(URLParams).forEach((key) =>
       url.searchParams.append(key, URLParams[key])
     );
@@ -31,8 +35,12 @@ export default class UploadDataSection extends Component {
       fetch(url, {
         method: "GET",
       }).then((response) => {
-        this.setState({ proccessing: false });
-        window.location.href = response.url;
+        const fileContent = createFileContent(response.url);
+        this.setState({
+          proccessing: false,
+          filesContent: [...this.state.filesContent, fileContent],
+        });
+        // window.location.href = response.url;
       });
     });
   };
@@ -99,46 +107,60 @@ export default class UploadDataSection extends Component {
   };
 
   setFilename = (filename) => {
-    console.log(filename);
-    this.setState({ proccessing: false, filename });
+    const fileContent = createFileContent(
+      serverURL + "/files/" + filename,
+      filename
+    );
+    console.log(fileContent);
+    this.setState({
+      proccessing: false,
+      filename,
+      filesContent: [...this.state.filesContent, fileContent],
+    });
   };
 
   startUploading = () => this.setState({ proccessing: true });
 
   onParamsUpdate = (URLParams) => {
-    console.log(URLParams);
     this.setState({ isCustomizing: false, URLParams });
   };
 
   render() {
     return (
-      <Paper className={styles.container} variant={"outlined"} square>
-        <Paper className={styles.section} variant={"elevation"} elevation={10}>
-          <Upload
-            setFilename={this.setFilename}
-            startUploading={this.startUploading}
-          />
-          <Button
-            onClick={() => this.setState({ isCustomizing: true })}
-            variant="contained"
-            color="primary"
-            component="span"
+      <div className={styles.container}>
+        <Paper variant={"outlined"} square>
+          <Paper
+            className={styles.section}
+            variant={"elevation"}
+            elevation={10}
           >
-            Customise Parameters
-          </Button>
+            <Upload
+              setFilename={this.setFilename}
+              startUploading={this.startUploading}
+            />
+            <Button
+              onClick={() => this.setState({ isCustomizing: true })}
+              variant="contained"
+              color="primary"
+              component="span"
+            >
+              Customise Parameters
+            </Button>
+          </Paper>
+          <Paper className={styles.section} variant={"elevation"} elevation={5}>
+            <Typography variant={"h6"} color={"primary"}>
+              Export Proccessed Data
+            </Typography>
+            {this.renderConfirmButtons()}
+          </Paper>
+          {this.onActionProccessing()}
+          <CustomizeParameters
+            onClose={this.onParamsUpdate}
+            isOpen={this.state.isCustomizing}
+          />
         </Paper>
-        <Paper className={styles.section} variant={"elevation"} elevation={5}>
-          <Typography variant={"h6"} color={"primary"}>
-            Export Proccessed Data
-          </Typography>
-          {this.renderConfirmButtons()}
-        </Paper>
-        {this.onActionProccessing()}
-        <CustomizeParameters
-          onClose={this.onParamsUpdate}
-          isOpen={this.state.isCustomizing}
-        />
-      </Paper>
+        <FilesViewer filesContent={this.state.filesContent} />
+      </div>
     );
   }
 }

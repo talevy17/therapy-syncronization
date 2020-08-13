@@ -1,0 +1,35 @@
+{
+  "blocks": [
+    {
+      "key": "4ss5h",
+      "text": " ",
+      "type": "atomic",
+      "depth": 0,
+      "inlineStyleRanges": [],
+      "entityRanges": [
+        {
+          "offset": 0,
+          "length": 1,
+          "key": 0
+        }
+      ],
+      "data": {}
+    }
+  ],
+  "entityMap": {
+    "0": {
+      "type": "wix-draft-plugin-file-upload",
+      "mutability": "IMMUTABLE",
+      "data": {
+        "config": {
+          "alignment": "center",
+          "size": "fullWidth"
+        },
+        "name": "results.csv",
+        "type": "csv",
+        "url": "http://file-examples.com/wp-content/uploads/2017/10/file-sample_150kB.pdf"
+      }
+    }
+  },
+  "VERSION": "7.16.2"
+}

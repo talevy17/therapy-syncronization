@@ -1,7 +1,6 @@
 import React, { Component } from "react";
-import { Button, CircularProgress } from "@material-ui/core";
+import { Button } from "@material-ui/core";
 import { DropzoneDialog } from "material-ui-dropzone";
-import styles from "./Upload.module.css";
 
 export default class Upload extends Component {
   constructor(props) {
@@ -19,14 +18,6 @@ export default class Upload extends Component {
       response.text().then((filename) => this.props.setFilename(filename));
     });
     this.setState({ open: false });
-  };
-
-  onActionProccessing = () => {
-    return this.state && this.state.proccessing ? (
-      <div className={styles.progress_container}>
-        <CircularProgress className={styles.progress_loader} />
-      </div>
-    ) : null;
   };
 
   render() {
