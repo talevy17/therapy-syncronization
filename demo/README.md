@@ -48,7 +48,7 @@ The demo was build using `React/js` for the client side and `Python Flask` for t
 
 ### `Client`
 
-We used `Material-UI` as a UI library, `Ricos-Viewer` as our text viewer and `Material-UI/Dropzone` for file uploading.
+We used `Material-UI` as a UI library, `Ricos-Viewer` as our text viewer and `Material-UI/Dropzone` for file uploading.<br/>
 The client side can be seen as four parts:<br/>
 
 `The App`
@@ -67,3 +67,8 @@ This allows us to display all of the content of the demo in a nice way.
 `Upload Section`
 
 This section is the core of the demo, the part that connects with the server and makes use of the Algorithms we have implemented.
+
+### `Server`
+
+The server was written with `Flask` creating endpoints and configuration to allow a user to upload data and use our tools. <br/>
+See more in https://github.com/talevy17/therapy-syncronization/tree/master/api
