@@ -1,6 +1,7 @@
 import React from "react";
 import { RicosViewer, empty } from "../text-viewer";
 import update from "immutability-helper";
+import styles from "./file-viewer.module.scss";
 
 export function createFileContent(url, filename) {
   let entityMap = Object.assign({}, empty.entityMap);
@@ -18,11 +19,15 @@ export function createFileContent(url, filename) {
 
 export function FilesViewer(props) {
   console.log(props.filesContent);
-  return props.filesContent.map((content, index) => {
-    return (
-      <div key={index}>
-        <RicosViewer contentState={content} />
-      </div>
-    );
-  });
+  return (
+    <div className={styles.container}>
+      {props.filesContent.map((content, index) => {
+        return (
+          <div key={index}>
+            <RicosViewer contentState={content} />
+          </div>
+        );
+      })}
+    </div>
+  );
 }
