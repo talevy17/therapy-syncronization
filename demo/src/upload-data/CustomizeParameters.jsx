@@ -87,7 +87,7 @@ export default class CustomizeParameters extends Component {
           <TextField
             label="Session Column"
             id="by-session"
-            defaultValue={this.state.session}
+            defaultValue={this.state.transcription}
             margin="normal"
             onChange={(event) =>
               this.setState({ transcription: event.target.value })
