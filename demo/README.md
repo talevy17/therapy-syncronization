@@ -41,3 +41,29 @@ See the section about [deployment](https://facebook.github.io/create-react-app/d
 ### `npm run rebuild`
 
 Cleans all node modules and build and then installs node modules and builds.<br />
+
+## Technical Info
+
+The demo was build using `React/js` for the client side and `Python Flask` for the server side. <br/>
+
+### `Client`
+
+We used `Material-UI` as a UI library, `Ricos-Viewer` as our text viewer and `Material-UI/Dropzone` for file uploading.
+The client side can be seen as four parts:<br/>
+
+`The App`
+
+This component is the main layout page displaying the toolbar and current page content.<br/>
+
+`Components`
+
+The components are ones used throughout the project, such as the `Tab` and the `Modal`.<br/>
+
+`Text Viewer`
+
+The text viewer uses Ricos - an open source text editing library by Wix.<br/>
+This allows us to display all of the content of the demo in a nice way.
+
+`Upload Section`
+
+This section is the core of the demo, the part that connects with the server and makes use of the Algorithms we have implemented.
