@@ -120,7 +120,6 @@ export default class UploadDataSection extends Component {
   startUploading = () => this.setState({ proccessing: true });
 
   onParamsUpdate = (URLParams) => {
-    console.log(URLParams);
     this.setState({ isCustomizing: false, URLParams });
   };
 
