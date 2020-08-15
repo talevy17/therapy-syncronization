@@ -21,7 +21,7 @@ def get_params(args):
     numOfWords = args.get("numOfWords")
     params = {'dyad': dyad if dyad else TMP_PARAMS['dyad'],
               'transcription': transcription if transcription else TMP_PARAMS['transcription'],
-              'speakers': speakers.split(',') if (speakers and len(speakers) != 0) else TMP_PARAMS['speakers'],
+              'speakers': speakers.split(',') if speakers else TMP_PARAMS['speakers'],
               'num_of_words': numOfWords if numOfWords else TMP_PARAMS['num_of_words'],}
     if measures:
         if len(measures) == 0:

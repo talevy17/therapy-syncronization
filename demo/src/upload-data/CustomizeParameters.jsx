@@ -21,7 +21,7 @@ export default class CustomizeParameters extends Component {
       transcription: "",
       dyad: "",
       key: "",
-      numOfWords: null,
+      numOfWords: "",
     };
   }
 
@@ -128,15 +128,17 @@ export default class CustomizeParameters extends Component {
       key,
       numOfWords,
     } = this.state;
-    this.props.onClose({
-      eventSpeaker,
-      measures,
-      speakers,
-      dyad,
-      transcription: resolution === "BySession" && transcription,
-      key,
-      numOfWords,
-    });
+    const URLParams = Object.assign(
+      {},
+      eventSpeaker !== "" && { eventSpeaker },
+      transcription !== "" && { transcription },
+      dyad !== "" && { dyad },
+      key !== "" && { key },
+      numOfWords !== "" && { numOfWords },
+      measures.length !== 0 && { measures },
+      speakers.length === 2 && { speakers }
+    );
+    this.props.onClose(URLParams);
   }
 
   render() {
