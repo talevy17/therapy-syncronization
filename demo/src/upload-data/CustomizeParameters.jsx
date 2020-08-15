@@ -131,7 +131,7 @@ export default class CustomizeParameters extends Component {
     const URLParams = Object.assign(
       {},
       eventSpeaker !== "" && { eventSpeaker },
-      transcription !== "" && { transcription },
+      resolution === "BySession" && transcription !== "" && { transcription },
       dyad !== "" && { dyad },
       key !== "" && { key },
       numOfWords !== "" && { numOfWords },
