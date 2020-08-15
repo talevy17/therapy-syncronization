@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Button } from "@material-ui/core";
 import { DropzoneDialog } from "material-ui-dropzone";
+import PropTypes from "prop-types";
 
 export default class Upload extends Component {
   constructor(props) {
@@ -8,14 +9,15 @@ export default class Upload extends Component {
     this.state = { open: false };
   }
   handleFileUpload = (files) => {
+    const { startUploading, setFilename } = this.props;
     const data = new FormData();
     data.append("file", files[0]);
-    this.props.startUploading();
+    startUploading && startUploading();
     fetch("/upload", {
       method: "POST",
       body: data,
     }).then((response) => {
-      response.text().then((filename) => this.props.setFilename(filename));
+      response.text().then((filename) => setFilename(filename));
     });
     this.setState({ open: false });
   };
@@ -44,3 +46,8 @@ export default class Upload extends Component {
     );
   }
 }
+
+Upload.propTypes = {
+  startUploading: PropTypes.func,
+  setFilename: PropTypes.func.isRequired,
+};

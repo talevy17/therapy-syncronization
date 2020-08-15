@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import {
   Radio,
   RadioGroup,
@@ -150,3 +151,8 @@ export default class CustomizeParameters extends Component {
     );
   }
 }
+
+CustomizeParameters.propTypes = {
+  isOpen: PropTypes.bool.isRequired,
+  onClose: PropTypes.func.isRequired,
+};

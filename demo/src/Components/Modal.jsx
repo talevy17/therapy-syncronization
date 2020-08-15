@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { Modal, Typography, IconButton, Paper } from "@material-ui/core";
 
 import closeIcon from "./closeIcon";
@@ -18,12 +19,21 @@ export default function SettingsModal(props) {
           {closeIcon()}
         </IconButton>
         <Paper className={styles.settings_container}>
-          <Typography variant={"h3"} color={"primary"}>
-            {title}
-          </Typography>
+          {title && (
+            <Typography variant={"h3"} color={"primary"}>
+              {title}
+            </Typography>
+          )}
           {children}
         </Paper>
       </Paper>
     </Modal>
   );
 }
+
+SettingsModal.propTypes = {
+  isOpen: PropTypes.bool.isRequired,
+  onClose: PropTypes.func.isRequired,
+  title: PropTypes.string,
+  children: PropTypes.any,
+};
