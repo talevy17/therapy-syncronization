@@ -3,7 +3,7 @@ from algorithms.graph import match_graph_one_dyad, coordination_graph_one_dyad
 from algorithms.params import POS_TAG
 import pandas as pd
 import os
-
+from params import NUM_OF_CHECK
 
 class Dyad:
     def __init__(self, dyad_number, data_col, data):
@@ -43,16 +43,12 @@ class Dyad:
     def tables(self, writer, lsm):
         self.lsm_table(writer) if lsm else self.coordination_table(writer)
 
-    def split_index(self, index, get_key=True):
-        dyad, session, t_key = [], [], []
+    def split_index(self, index):
+        dyad, session = [], []
         for i in index:
             d_s = i.split('_')
             dyad.append(d_s[0])
             session.append(d_s[1])
-            if get_key:
-                t_key.append(self.session_key_dict[int(d_s[1])])
-        if get_key:
-            return dyad, session, t_key
         return dyad, session
 
     def add_dyad_info_col(self, df, dyad, session, t_key=None):
@@ -62,11 +58,20 @@ class Dyad:
             df.insert(column='transcription_hard_key', value=t_key, loc=2)
         return df
 
+    def get_sessions_coor(self, sessions_keys):
+        coor_sessions = []
+        for _ in range(NUM_OF_CHECK):
+            for session in sessions_keys:
+                coor_sessions.append(session)
+        return coor_sessions
+
     def coordination_table(self, file_name):
         coor_val = self.get_coordination_dyad()
+        sessions_keys = self.get_sessions_coor(key_to_arr(self.sessions))
         index = coor_val._get_index_resolvers()['ilevel_0']
-        dyad, session, t_key = self.split_index(index)
-        self.add_dyad_info_col(coor_val, dyad, session, t_key)
+        dyad, session = self.split_index(index)
+        self.add_dyad_info_col(coor_val, dyad, session)
+        coor_val.insert(column='transcription_hard_key', value=sessions_keys, loc=2)
         if os.path.exists(file_name):
             coor_val.to_csv(file_name, mode='a', index=False, header=False)
         else:
@@ -76,7 +81,7 @@ class Dyad:
         lsm_val = self.get_lsm_dyad()
         sessions_keys = key_to_arr(self.sessions)
         index = lsm_val._get_index_resolvers()['ilevel_0']
-        dyad, session = self.split_index(index, get_key=False)
+        dyad, session = self.split_index(index)
         self.add_dyad_info_col(lsm_val, dyad, session)
         lsm_val.insert(column='transcription_hard_key', value=sessions_keys, loc=2)
         if os.path.exists(file_name):
