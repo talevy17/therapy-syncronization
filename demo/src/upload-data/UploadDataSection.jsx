@@ -40,7 +40,6 @@ export default class UploadDataSection extends Component {
           proccessing: false,
           filesContent: [...this.state.filesContent, fileContent],
         });
-        // window.location.href = response.url;
       });
     });
   };
@@ -111,7 +110,6 @@ export default class UploadDataSection extends Component {
       serverURL + "/files/" + filename,
       filename
     );
-    console.log(fileContent);
     this.setState({
       proccessing: false,
       filename,

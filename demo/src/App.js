@@ -39,16 +39,16 @@ class App extends PureComponent {
             <Tab label="Upload your own data" {...this.a11yProps(3)} />
           </Tabs>
         </AppBar>
-        <TabPanel value={tabIndex} index={0}>
+        <TabPanel currentTabIndex={tabIndex} index={0}>
           <RicosViewer contentState={intro} />
         </TabPanel>
-        <TabPanel value={tabIndex} index={1}>
+        <TabPanel currentTabIndex={tabIndex} index={1}>
           <RicosViewer contentState={algorithms} />
         </TabPanel>
-        <TabPanel value={tabIndex} index={2}>
+        <TabPanel currentTabIndex={tabIndex} index={2}>
           <RicosViewer contentState={results} />
         </TabPanel>
-        <TabPanel value={tabIndex} index={3}>
+        <TabPanel currentTabIndex={tabIndex} index={3}>
           <UploadDataTab />
         </TabPanel>
       </div>

@@ -2,6 +2,7 @@ import React from "react";
 import { RicosViewer, empty } from "../text-viewer";
 import update from "immutability-helper";
 import styles from "./file-viewer.module.scss";
+import PropTypes from "prop-types";
 
 export function createFileContent(url, filename) {
   let entityMap = Object.assign({}, empty.entityMap);
@@ -18,7 +19,6 @@ export function createFileContent(url, filename) {
 }
 
 export function FilesViewer(props) {
-  console.log(props.filesContent);
   return (
     <div className={styles.container}>
       {props.filesContent.map((content, index) => {
@@ -31,3 +31,7 @@ export function FilesViewer(props) {
     </div>
   );
 }
+
+FilesViewer.propTypes = {
+  filesContent: PropTypes.array.isRequired,
+};

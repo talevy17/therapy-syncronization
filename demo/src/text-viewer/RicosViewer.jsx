@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { RicosViewer } from "ricos-viewer";
 import "ricos-viewer/dist/styles.min.css";
 import { pluginDivider } from "wix-rich-content-plugin-divider/dist/module.viewer";
@@ -51,3 +52,10 @@ const Viewer = ({ contentState, palette, isMobile, addAnchors }) => {
 };
 
 export default Viewer;
+
+Viewer.propTypes = {
+  contentState: PropTypes.object,
+  pallete: PropTypes.object,
+  isMobile: PropTypes.bool,
+  addAnchors: PropTypes.bool,
+};
