@@ -29,6 +29,7 @@ def coordination_graph_one_dyad(directory, coordination_dyad, dyad_num):
     titles= ['Speaker Coordination', 'Target Coordination']
     for i in range(len(speaker_to_target)):
         for speaker in speakers:
+            plt.switch_backend('Agg')
             graph_to_plot = filter_graph(df, speaker_to_target[i], speaker, filter_avg=True)
             graph_to_plot.plot.bar(y='avg', color=color[i])
             plt.ylabel('coordination: speaker='+speaker)
