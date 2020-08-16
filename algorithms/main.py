@@ -88,4 +88,4 @@ def controller(file_name, params=None, measures=None, table=False, graphs=False,
 
 if __name__ == '__main__':
     controller('MBM_camouflage_AllWithSBS.csv', params=TMP_PARAMS, measures=POS_TAG,
-               table=False, graphs=True, lsm=True)
+               table=False, graphs=True, lsm=False)

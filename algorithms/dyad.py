@@ -19,12 +19,12 @@ class Dyad:
         # transcription_hard_key : session
         sessions = {}
         session_num_key_dict = {}
-        for tr in tr_groups:
+        for tr in range(len(tr_groups)):
             session_name = str(self.dyad_num) + '_' + str(tr)
-            s_df = self.df.loc[self.df[self.col['transcription']] == tr]
+            s_df = self.df.loc[self.df[self.col['transcription']] == tr_groups[tr]]
             key = s_df['transcription_hard_key'].iloc[0]
             sessions[key] = Session(s_df, key, self.attributes, self.speakers, session_name)
-            session_num_key_dict[tr] = key
+            session_num_key_dict[tr_groups[tr]] = key
         return sessions, session_num_key_dict
 
     def get_coordination_dyad(self):

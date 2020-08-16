@@ -23,7 +23,6 @@ def filter_graph(df, speaker_to_target, speaker, filter_avg=False):
 
 def coordination_graph_one_dyad(directory, coordination_dyad, dyad_num):
     df = set_x_ax(coordination_dyad, dyad_num)
-    # fixme - hard coded
     speaker_to_target = ['0','1']
     color = ['#6FBBA3', '#6F91BB']
     titles= ['Speaker Coordination', 'Target Coordination']
@@ -34,10 +33,10 @@ def coordination_graph_one_dyad(directory, coordination_dyad, dyad_num):
             graph_to_plot.plot.bar(y='avg', color=color[i])
             plt.ylabel('coordination: speaker='+speaker)
             plt.xlabel('session')
-            plt.title(titles[i])
+            plt.title(titles[i]+' dyad number: '+str(dyad_num))
             if not os.path.exists(directory):
                 os.makedirs(directory)
-            plt.savefig(os.path.join(directory, str(dyad_num)+'_s: '+speaker))
+            plt.savefig(os.path.join(directory, str(dyad_num))+'_s_'+speaker+'.png')
             plt.close()
 
 '''
