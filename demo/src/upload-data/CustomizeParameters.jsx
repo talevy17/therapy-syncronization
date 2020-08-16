@@ -102,7 +102,7 @@ export default class CustomizeParameters extends Component {
           margin="normal"
           onChange={(event) => this.setState({ dyad: event.target.value })}
         />
-        {this.state.resolution === "BySession" && (
+        {
           <TextField
             label="Session Column"
             id="by-session"
@@ -111,8 +111,9 @@ export default class CustomizeParameters extends Component {
             onChange={(event) =>
               this.setState({ transcription: event.target.value })
             }
+            disabled={this.state.resolution !== "BySession"}
           />
-        )}
+        }
       </FormControl>
     );
   };
