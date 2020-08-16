@@ -25,7 +25,7 @@ export default class UploadDataSection extends Component {
     };
   }
 
-  onActionChosen = (path) => {
+  onActionChosen = (path, name) => {
     const { URLParams } = this.state;
     let url = new URL(serverURL + path);
     Object.keys(URLParams).forEach((key) =>
@@ -35,7 +35,7 @@ export default class UploadDataSection extends Component {
       fetch(url, {
         method: "GET",
       }).then((response) => {
-        const fileContent = createFileContent(response.url);
+        const fileContent = createFileContent(response.url, name);
         this.setState({
           proccessing: false,
           filesContent: [...this.state.filesContent, fileContent],
@@ -51,7 +51,10 @@ export default class UploadDataSection extends Component {
       <ButtonGroup>
         <Button
           onClick={() =>
-            this.onActionChosen("/lsm-table/" + this.state.filename)
+            this.onActionChosen(
+              "/lsm-table/" + this.state.filename,
+              "lsm_table.csv"
+            )
           }
           variant="contained"
           color="primary"
@@ -62,7 +65,10 @@ export default class UploadDataSection extends Component {
         </Button>
         <Button
           onClick={() =>
-            this.onActionChosen("/coor-table/" + this.state.filename)
+            this.onActionChosen(
+              "/coor-table/" + this.state.filename,
+              "coor_table.csv"
+            )
           }
           variant="contained"
           color="primary"
@@ -73,7 +79,10 @@ export default class UploadDataSection extends Component {
         </Button>
         <Button
           onClick={() =>
-            this.onActionChosen("/lsm-graph/" + this.state.filename)
+            this.onActionChosen(
+              "/lsm-graph/" + this.state.filename,
+              "lsm_graph.zip"
+            )
           }
           variant="contained"
           color="primary"
@@ -84,7 +93,10 @@ export default class UploadDataSection extends Component {
         </Button>
         <Button
           onClick={() =>
-            this.onActionChosen("/coor-graph/" + this.state.filename)
+            this.onActionChosen(
+              "/coor-graph/" + this.state.filename,
+              "coor_graph.zip"
+            )
           }
           variant="contained"
           color="primary"
