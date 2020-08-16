@@ -48,6 +48,7 @@ def match_graph_one_dyad(directory, match_along_sessions, dyad_num):
     df = match_along_sessions['avg']
     df = set_x_ax(df, dyad_num)
     df.plot(kind='line', color='#0F5762')
+    plt.ioff()
     plt.xlabel('session number')
     plt.ylabel('pos-tag LSM average')
     plt.title('LSM over sessions')
