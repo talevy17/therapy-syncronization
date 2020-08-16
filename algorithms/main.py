@@ -1,9 +1,9 @@
 import os
 import zipfile
 import pandas as pd
-import csv
 from algorithms.dyad import Dyad
 from algorithms.params import POS_TAG, get_coor_table_att
+
 
 TMP_PARAMS = {'dyad': 'dyad_n',
               'transcription': 'transcription_n',
@@ -29,12 +29,9 @@ def plot_coordination(df, col, directory):
 
 def create_tables(df, col, file_name, att, lsm=False):
     dyad_groups = df[col['dyad']].unique()
-    with open(file_name, 'w', newline='') as file:
-        writer = csv.writer(file)
-        writer.writerow(att)
-        for d in dyad_groups:
-            dyad_obj = Dyad(d, col, df.loc[df[col['dyad']] == d])
-            dyad_obj.tables(writer, lsm)
+    for d in dyad_groups:
+        dyad_obj = Dyad(d, col, df.loc[df[col['dyad']] == d])
+        dyad_obj.tables(file_name, lsm)
 
 
 def get_table(df, params, measures,lsm):
@@ -91,4 +88,4 @@ def controller(file_name, params=None, measures=None, table=False, graphs=False,
 
 if __name__ == '__main__':
     controller('MBM_camouflage_AllWithSBS.csv', params=TMP_PARAMS, measures=POS_TAG,
-               table=False, graphs=True, lsm=True)
+               table=True, graphs=False, lsm=False)
