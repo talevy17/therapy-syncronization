@@ -3,7 +3,7 @@ from algorithms.graph import match_graph_one_dyad, coordination_graph_one_dyad
 from algorithms.params import POS_TAG
 import pandas as pd
 import os
-from params import NUM_OF_CHECK
+from algorithms.params import NUM_OF_CHECK
 
 class Dyad:
     def __init__(self, dyad_number, data_col, data):
