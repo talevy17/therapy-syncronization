@@ -1,5 +1,32 @@
+## Quick Start
+
 To run the demo locally make sure you have Python3 and npm or yarn installed.<br />
-Also, make sure to `npm i` before your first run.
+
+### First Run
+
+<ol> 
+<li> Open a terminal window and go in the directory `therapy-syncronization/demo` </li>
+<li> Run `npm i` or `yarn install` to install all of the dependencies </li>
+<li> Run `npm run start` to run the Client App</li>
+<li> Open another terminal window in the same directory and run `npm run start-server` to start the Server </li>
+</ol>
+
+### Adding a new Tab
+
+Simply create the component you want to be rendered in a new tab, let's call it `Component` <br />
+Then, in `App.js` add a `Tab` component with a `label` prop to best describe the tab and call `{...this.a11yProps(i)}` with `i` the new tab index. <br />
+lastly, add a `TabPanel` component with `Component` as it's child <br />
+You`re all set.
+
+### Updating or Writting new text content
+
+Here https://github.com/talevy17/therapy-syncronization/tree/master/demo/src/text-viewer/fixtures you'll find JSON files which are feeded as `ContentState` by props to `RicosViewer` our choice of rich-text library. <br />
+To update content or write a new one you can use `RicosEditor` by either implementing a simple one https://wix-incubator.github.io/rich-content/docs/ricos/quick-start/
+or just use this surge: wix-rich-content.herokuapp.com/, write whatever you like and copy the JSON from the `ContentState` tab.
+
+### Adding a new algorithm
+
+On the client side it's easy - once you've got the algorithm implemented and a new endpoint in the `api` https://github.com/talevy17/therapy-syncronization/tree/master/api, just add a new button in `upload-data/UploadDataSection.jsx` with the relative URL to the endpoint and a file name/
 
 ## Available Scripts
 
