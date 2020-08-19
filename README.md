@@ -1,7 +1,7 @@
 
 ## Project Overview
 
-In this project we have split the work to three main parts
+In this project we have split the work to two main parts
 
 ### `Algorithms`
 
@@ -28,6 +28,12 @@ see https://github.com/talevy17/therapy-syncronization/tree/master/demo for more
 Using Flask to open endpoints.<br />
 Provides the bridge between the client side of the demo to the algorithms.
 
-### `Results`
+## Running locally
 
-We provide an anlysis and conclusions from the results we have seen.
+### Client-Server App
+
+See `Quick Start` in https://github.com/talevy17/therapy-syncronization/tree/master/demo for all the relevant information.
+
+### Algorithms
+
+You can also run the algorithms themselves outside of the Client-Server App, see https://github.com/talevy17/therapy-syncronization/tree/master/algorithms.
